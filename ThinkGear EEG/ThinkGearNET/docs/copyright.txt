@@ -1,0 +1,5 @@
+Copyright 2010 Brian Peek
+http://www.brianpeek.com/
+
+Licensed under the terms of the Microsoft Permissive License (Ms-PL).
+See license.txt for details.
