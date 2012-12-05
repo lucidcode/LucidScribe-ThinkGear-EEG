@@ -2098,14 +2098,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe ThinkGear EEG"
-        "ProductCode" = "8:{5265F605-D2C6-48C4-B76D-564BA7B120B9}"
-        "PackageCode" = "8:{E9308D74-2D9B-4E68-8395-B3DAA8A26532}"
+        "ProductCode" = "8:{75B42AC6-A305-4F7B-8419-E6F0897754E3}"
+        "PackageCode" = "8:{40D582AF-175B-4AE3-8CDD-69CD635BB74C}"
         "UpgradeCode" = "8:{9B1E2A82-9D73-4675-9717-2311206ABC4E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.7"
+        "ProductVersion" = "8:0.9.8"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucidcode.com/Contact"
@@ -2629,7 +2629,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D5F4677254244E92ACAD2F83F55F5016"
             {
-            "SourcePath" = "8:..\\ThinkGear EEG\\obj\\Debug\\lucidcode.LucidScribe.Plugin.NeuroSky.ThinkGear.EEG.dll"
+            "SourcePath" = "8:..\\ThinkGear EEG\\obj\\Release\\lucidcode.LucidScribe.Plugin.NeuroSky.ThinkGear.EEG.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
