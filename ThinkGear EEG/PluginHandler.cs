@@ -88,7 +88,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       m_dblLastBeta = ((e.ThinkGearState.Beta1 / 100) + (e.ThinkGearState.Beta2 / 100)) / 2;
       m_dblLastDelta = e.ThinkGearState.Delta / 10000;
       m_dblLastGamma = ((e.ThinkGearState.Gamma1 / 100) + (e.ThinkGearState.Gamma2 / 100)) / 2;
-      m_dblLastTheta = e.ThinkGearState.Theta / 100;
+      m_dblLastTheta = e.ThinkGearState.Theta / 200;
       m_dblRaw = e.ThinkGearState.Raw;
     }
 
