@@ -36,8 +36,11 @@
       this.Panel3D4 = new lucidcode.Controls.Panel3D();
       this.Label5 = new System.Windows.Forms.Label();
       this.Label6 = new System.Windows.Forms.Label();
+      this.mnuPortsList = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.mnuRefreshPorts = new System.Windows.Forms.ToolStripMenuItem();
       this.pnlPlugins.SuspendLayout();
       this.Panel3D4.SuspendLayout();
+      this.mnuPortsList.SuspendLayout();
       this.SuspendLayout();
       // 
       // pnlPlugins
@@ -60,6 +63,7 @@
                   | System.Windows.Forms.AnchorStyles.Left)
                   | System.Windows.Forms.AnchorStyles.Right)));
       this.lstPorts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.lstPorts.ContextMenuStrip = this.mnuPortsList;
       this.lstPorts.LargeImageList = this.lstImg;
       this.lstPorts.Location = new System.Drawing.Point(3, 25);
       this.lstPorts.MultiSelect = false;
@@ -114,6 +118,20 @@
       this.Label6.Text = "Select port to connect";
       this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
+      // mnuPortsList
+      // 
+      this.mnuPortsList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuRefreshPorts});
+      this.mnuPortsList.Name = "contextMenuStrip1";
+      this.mnuPortsList.Size = new System.Drawing.Size(153, 48);
+      // 
+      // mnuRefreshPorts
+      // 
+      this.mnuRefreshPorts.Name = "mnuRefreshPorts";
+      this.mnuRefreshPorts.Size = new System.Drawing.Size(152, 22);
+      this.mnuRefreshPorts.Text = "&Refresh";
+      this.mnuRefreshPorts.Click += new System.EventHandler(this.mnuRefresh_Click);
+      // 
       // PortForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -129,6 +147,7 @@
       this.Load += new System.EventHandler(this.PortForm_Load);
       this.pnlPlugins.ResumeLayout(false);
       this.Panel3D4.ResumeLayout(false);
+      this.mnuPortsList.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -141,5 +160,7 @@
     internal System.Windows.Forms.Label Label6;
     internal System.Windows.Forms.ListView lstPorts;
     internal System.Windows.Forms.ImageList lstImg;
+    private System.Windows.Forms.ContextMenuStrip mnuPortsList;
+    private System.Windows.Forms.ToolStripMenuItem mnuRefreshPorts;
   }
 }

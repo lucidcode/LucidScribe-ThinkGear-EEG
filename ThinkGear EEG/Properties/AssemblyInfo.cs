@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Lucid Scribe NeuroSky MindSet Plugin")]
+[assembly: AssemblyTitle("Lucid Scribe ThinkGear EEG Plugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("lucidcode")]
 [assembly: AssemblyProduct("Lucid Scribe ThinkGear EEG Plugin")]
-[assembly: AssemblyCopyright("Copyright © lucidcode 2012")]
+[assembly: AssemblyCopyright("Copyright © lucidcode 2012 - 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.8.0")]
-[assembly: AssemblyFileVersion("0.9.8.0")]
+[assembly: AssemblyVersion("0.9.9.0")]
+[assembly: AssemblyFileVersion("0.9.9.0")]
