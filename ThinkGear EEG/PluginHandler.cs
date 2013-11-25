@@ -249,7 +249,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           m_arrHistory.Add(Convert.ToInt32(dblEEG));
           if (m_arrHistory.Count > 512) { m_arrHistory.RemoveAt(0); }
 
-          // Check for 3 blinks
+          // Check for blinks
           int intBlinks = 0;
           bool boolBlinking = false;
 
@@ -272,7 +272,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
             if (!boolBlinking)
             {
-              if (intAbove >= 2)
+              if (intAbove >= 1)
               {
                 boolBlinking = true;
                 intBlinks += 1;
@@ -285,7 +285,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
               if (intBelow >= 28)
               {
                 boolBlinking = false;
-                intBlinks += 1;
                 intBelow = 0;
                 intAbove = 0;
               }
@@ -302,7 +301,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
               }
             }
 
-            if (intBlinks > 10)
+            if (intBlinks > 6)
             {
               boolDreaming = true;
               break;
@@ -327,7 +326,8 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           if (boolDreaming)
           { return 888; }
 
-          return 0;
+          if (intBlinks > 10) { intBlinks = 10; }
+          return intBlinks * 100;
         }
       }
     }
