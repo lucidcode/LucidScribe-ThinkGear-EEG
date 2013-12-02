@@ -6,13 +6,19 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Xml;
+using System.IO;
 
 namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 {
     public partial class PortForm : Form
     {
 
+        private string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
         public String SelectedPort = "";
+        public String Algorithm = "REM Detector";
+        public int Threshold = 800;
+        private Boolean loaded = false;
 
         public PortForm()
         {
@@ -22,6 +28,8 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         private void PortForm_Load(object sender, EventArgs e)
         {
           LoadPortList();
+          LoadSettings();
+          loaded = true;
         }
 
         private void LoadPortList()
@@ -63,6 +71,38 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           }
         }
 
+        private void LoadSettings()
+        {
+          XmlDocument xmlSettings = new XmlDocument();
+
+          if (!File.Exists(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd"))
+          {
+            String defaultSettings = "<LucidScribeData>";
+            defaultSettings += "<Plugin>";
+            defaultSettings += "<Algorithm>REM Detector</Algorithm>";
+            defaultSettings += "<Threshold>800</Threshold>";
+            defaultSettings += "</Plugin>";
+            defaultSettings += "</LucidScribeData>";
+            File.WriteAllText(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd", defaultSettings);
+          }
+
+          xmlSettings.Load(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd");
+
+          cmbAlgorithm.Text = xmlSettings.DocumentElement.SelectSingleNode("//Algorithm").InnerText;
+          cmbThreshold.Text = xmlSettings.DocumentElement.SelectSingleNode("//Threshold").InnerText;
+        }
+
+        private void SaveSettings()
+        {
+          String defaultSettings = "<LucidScribeData>";
+          defaultSettings += "<Plugin>";
+          defaultSettings += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
+          defaultSettings += "<Threshold>" + cmbThreshold.Text + "</Threshold>";
+          defaultSettings += "</Plugin>";
+          defaultSettings += "</LucidScribeData>";
+          File.WriteAllText(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd", defaultSettings);
+        }
+
         private void lstPlaylists_MouseMove(object sender, MouseEventArgs e)
         {
             if (lstPorts.GetItemAt(e.X, e.Y) != null)
@@ -88,6 +128,18 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         private void mnuRefresh_Click(object sender, EventArgs e)
         {
           LoadPortList();
+        }
+
+        private void cmbAlgorithm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          Algorithm = cmbAlgorithm.Text;
+          if (loaded) { SaveSettings(); }
+        }
+
+        private void cmbThreshold_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          Threshold = Convert.ToInt32(cmbThreshold.Text);
+          if (loaded) { SaveSettings(); }
         }
     }
 }
