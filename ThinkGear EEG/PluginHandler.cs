@@ -261,9 +261,19 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       public event Interface.SenseHandler Sensed;
       public void _thinkGearWrapper_ThinkGearChanged(object sender, ThinkGearChangedEventArgs e)
       {
+        if (ClearTicks)
+        {
+          ClearTicks = false;
+          TickCount = "";
+        }
         TickCount += e.ThinkGearState.Raw + ",";
+
+        if (ClearBuffer)
+        {
+          ClearBuffer = false;
+          BufferData = "";
+        }
         BufferData += e.ThinkGearState.Raw + ",";
-        //if (Sensed != null) { Sensed(this, e.ThinkGearState.Raw); }
       }
 
       public void Dispose()
@@ -298,14 +308,14 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         }
       }
 
+      private Boolean ClearTicks = false;
       public String TickCount = "";
       public String Ticks
       {
         get
         {
-          string temp = TickCount;
-          TickCount = "";
-          return temp;
+          ClearTicks = true;
+          return TickCount;
         }
         set
         {
@@ -313,14 +323,14 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         }
       }
 
+      private Boolean ClearBuffer = false;
       public String BufferData = "";
       public String Buffer
       {
         get
         {
-          string temp = BufferData;
-          BufferData = "";
-          return temp;
+          ClearBuffer = true;
+          return BufferData;
         }
         set
         {
