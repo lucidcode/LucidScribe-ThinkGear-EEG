@@ -93,6 +93,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_344D1DE8A36948C28EE8CDEA634DCA2B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3949C0A698D74799B990D99A600DE21E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -251,6 +257,12 @@
         {
         "MsmKey" = "8:_8915AEDA41B64D118DDB33B143ACD567"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8EC90E4D5E8A053DDA3AEDF496A9D03E"
+        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -419,6 +431,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1FBA81496A2EC06B3748DE845685909D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8EC90E4D5E8A053DDA3AEDF496A9D03E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -713,7 +731,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ThinkGearNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:ThinkGearNET, Version=1.0.1.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_1FBA81496A2EC06B3748DE845685909D"
@@ -804,6 +822,26 @@
             {
             "SourcePath" = "8:..\\ThinkGear EEG\\Plugins\\Blink Strength.lsd"
             "TargetName" = "8:Blink Strength.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_E4E5B7EE01D94A59926DD97BFC70E283"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_344D1DE8A36948C28EE8CDEA634DCA2B"
+            {
+            "SourcePath" = "8:..\\ThinkGear EEG\\Plugins\\NeuroSky RAW.lsd"
+            "TargetName" = "8:NeuroSky RAW.lsd"
             "Tag" = "8:"
             "Folder" = "8:_E4E5B7EE01D94A59926DD97BFC70E283"
             "Condition" = "8:"
@@ -1257,7 +1295,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ThinkGearNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:ThinkGearNET, Version=1.0.1.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_74CAE4B0BF7440C18EA8ED97292C459A"
@@ -1402,6 +1440,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8EC90E4D5E8A053DDA3AEDF496A9D03E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.Interface.Illuminated, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_8EC90E4D5E8A053DDA3AEDF496A9D03E"
+                    {
+                    "Name" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_92A98C7469E4447497F8692D6DB1B693"
@@ -2098,14 +2167,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe ThinkGear EEG"
-        "ProductCode" = "8:{B498F664-6841-43F3-A584-553F7499793A}"
-        "PackageCode" = "8:{25EC3329-2FDE-4F41-811E-CE69C4296FDF}"
+        "ProductCode" = "8:{BD63B229-5851-4516-9A67-6D71CE6913AA}"
+        "PackageCode" = "8:{47BCF51B-F14B-4CBB-AD45-567107D281D9}"
         "UpgradeCode" = "8:{9B1E2A82-9D73-4675-9717-2311206ABC4E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucidcode.com/Contact"

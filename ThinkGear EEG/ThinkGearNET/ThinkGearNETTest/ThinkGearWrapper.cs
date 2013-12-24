@@ -116,7 +116,7 @@ namespace ThinkGearNET
 
 			// read all packets
 			_tgState.PacketsRead = ThinkGear.TG_ReadPackets(_connectionId, -1);
-      Thread.Sleep(1000);
+      //Thread.Sleep(1000);
 
 			// if < 0, we have an error
 			if(_tgState.PacketsRead < 0)

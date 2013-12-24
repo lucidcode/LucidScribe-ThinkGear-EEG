@@ -43,7 +43,7 @@ namespace ThinkGearNET
 			}
 
 			// connect to the device
-			int connect = ThinkGear.TG_Connect(_connectionId, @"\\.\" + comPort, baud, ThinkGear.STREAM_PACKETS);
+      int connect = ThinkGear.TG_Connect(_connectionId, @"\\.\" + comPort, baud, ThinkGear.STREAM_PACKETS);
 			LogText("Connect: " + connect);
 
 			// if < 0, we have an error
@@ -100,11 +100,8 @@ namespace ThinkGearNET
 			while(_polling)
 			{
 				// update the current state
-				UpdateState();
+        UpdateState();
 
-				// let those listening know
-				if(ThinkGearChanged != null)
-					ThinkGearChanged(this, new ThinkGearChangedEventArgs(_tgState));
 			}
 			_event.Set();
 		}
@@ -115,7 +112,7 @@ namespace ThinkGearNET
 				return;
 
 			// read all packets
-			_tgState.PacketsRead = ThinkGear.TG_ReadPackets(_connectionId, -1);
+			_tgState.PacketsRead = ThinkGear.TG_ReadPackets(_connectionId, 1);
 
 			// if < 0, we have an error
 			if(_tgState.PacketsRead < 0)
@@ -142,10 +139,13 @@ namespace ThinkGearNET
 				_tgState.Beta2		        = GetValue(ThinkGear.DATA_BETA2) ?? _tgState.Beta2;
 				_tgState.Gamma1		        = GetValue(ThinkGear.DATA_GAMMA1) ?? _tgState.Gamma1;
 				_tgState.Gamma2		        = GetValue(ThinkGear.DATA_GAMMA2) ?? _tgState.Gamma2;
-				_tgState.BlinkStrength		= GetValue(ThinkGear.DATA_BLINK_STRENGTH) ?? _tgState.BlinkStrength;
-      }
+        _tgState.BlinkStrength = GetValue(ThinkGear.DATA_BLINK_STRENGTH) ?? _tgState.BlinkStrength;
 
-      Thread.Sleep(100);
+        // let those listening know
+        if (ThinkGearChanged != null)
+          ThinkGearChanged(this, new ThinkGearChangedEventArgs(_tgState));
+				
+      }
 		}
 
 		private float? GetValue(int type)

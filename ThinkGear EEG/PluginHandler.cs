@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using ThinkGearNET;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 {
@@ -34,6 +35,8 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
     private static double m_dblTheta;
     private static double m_dblLastTheta;
     private static double m_dblRaw;
+
+    public static EventHandler<ThinkGearChangedEventArgs> ThinkGearChanged;
 
     public static Boolean Initialize()
     {
@@ -95,6 +98,17 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       m_dblLastGamma = ((e.ThinkGearState.Gamma1 / 100) + (e.ThinkGearState.Gamma2 / 100)) / 2;
       m_dblLastTheta = e.ThinkGearState.Theta / 1000;
       m_dblRaw = e.ThinkGearState.Raw;
+
+      if (ThinkGearChanged != null)
+      {
+        ThinkGearChanged(sender, e);
+      }
+    }
+
+    public static void Dispose()
+    {
+      _thinkGearWrapper.ThinkGearChanged -= _thinkGearWrapper_ThinkGearChanged;
+      _thinkGearWrapper.Disconnect();
     }
 
     public static Double GetEEG()
@@ -204,7 +218,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
     }
   }
 
-  namespace ElectroEncephaloGraph
+  namespace EEG
   {
     public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
     {
@@ -224,6 +238,106 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           if (dblValue > 999) { dblValue = 999; }
           if (dblValue < 0) { dblValue = 0; }
           return dblValue;
+        }
+      }
+    }
+  }
+
+  namespace RAW
+  {
+    public class PluginHandler : lucidcode.LucidScribe.Interface.ILluminatedPlugin
+    {
+      public string Name
+      {
+        get { return "NeuroSky RAW"; }
+      }
+      public bool Initialize()
+      {
+        bool initialized = Device.Initialize();
+        Device.ThinkGearChanged += _thinkGearWrapper_ThinkGearChanged;
+        return initialized;
+      }
+
+      public event Interface.SenseHandler Sensed;
+      public void _thinkGearWrapper_ThinkGearChanged(object sender, ThinkGearChangedEventArgs e)
+      {
+        TickCount += e.ThinkGearState.Raw + ",";
+        BufferData += e.ThinkGearState.Raw + ",";
+        //if (Sensed != null) { Sensed(this, e.ThinkGearState.Raw); }
+      }
+
+      public void Dispose()
+      {
+        Device.ThinkGearChanged -= _thinkGearWrapper_ThinkGearChanged;
+        Device.Dispose();
+      }
+
+      public Boolean isEnabled = false;
+      public Boolean Enabled
+      {
+        get
+        {
+          return isEnabled;
+        }
+        set
+        {
+          isEnabled = value;
+        }
+      }
+
+      public Color PluginColor = Color.White;
+      public Color Color
+      {
+        get
+        {
+          return Color;
+        }
+        set
+        {
+          Color = value;
+        }
+      }
+
+      public String TickCount = "";
+      public String Ticks
+      {
+        get
+        {
+          string temp = TickCount;
+          TickCount = "";
+          return temp;
+        }
+        set
+        {
+          TickCount = value;
+        }
+      }
+
+      public String BufferData = "";
+      public String Buffer
+      {
+        get
+        {
+          string temp = BufferData;
+          BufferData = "";
+          return temp;
+        }
+        set
+        {
+          BufferData = value;
+        }
+      }
+
+      int lastHour;
+      public int LastHour
+      {
+        get
+        {
+          return lastHour;
+        }
+        set
+        {
+          lastHour = value;
         }
       }
     }
