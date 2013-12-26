@@ -36,6 +36,9 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
     private static double m_dblLastTheta;
     private static double m_dblRaw;
 
+    private static double m_dblRawTicks;
+    private static bool m_boolClearRaw;
+
     public static EventHandler<ThinkGearChangedEventArgs> ThinkGearChanged;
 
     public static Boolean Initialize()
@@ -97,13 +100,23 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       m_dblLastDelta = e.ThinkGearState.Delta / 10000;
       m_dblLastGamma = ((e.ThinkGearState.Gamma1 / 100) + (e.ThinkGearState.Gamma2 / 100)) / 2;
       m_dblLastTheta = e.ThinkGearState.Theta / 1000;
-      m_dblRaw = e.ThinkGearState.Raw;
+
+      if (m_boolClearRaw)
+      {
+        m_boolClearRaw = false;
+        m_dblRaw = 0;
+        m_dblRawTicks = 0;
+      }
+      m_dblRaw += e.ThinkGearState.Raw;
+      m_dblRawTicks++;
 
       if (ThinkGearChanged != null)
       {
         ThinkGearChanged(sender, e);
       }
     }
+
+    
 
     public static void Dispose()
     {
@@ -113,7 +126,13 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
     public static Double GetEEG()
     {
-      return m_dblRaw + 256;
+      if (m_dblRawTicks == 0) return 0;
+      return (m_dblRaw / m_dblRawTicks) + 256;
+    }
+
+    public static void ClearEEG()
+    {
+      m_boolClearRaw = true;
     }
 
     public static Double GetREM()
@@ -235,6 +254,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         get
         {
           double dblValue = Device.GetEEG();
+          Device.ClearEEG();
           if (dblValue > 999) { dblValue = 999; }
           if (dblValue < 0) { dblValue = 0; }
           return dblValue;
