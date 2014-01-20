@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>lucidcode.LucidScribe.Plugin.NeuroSky.ThinkGear.EEG</RootNamespace>
     <AssemblyName>lucidcode.LucidScribe.Plugin.NeuroSky.ThinkGear.EEG</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -44,7 +44,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\lucidcode.LucidScribe.Interface.Illuminated.dll</HintPath>
     </Reference>
+    <Reference Include="lucidcode.LucidScribe.TCMP, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\lucidcode.LucidScribe.TCMP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />

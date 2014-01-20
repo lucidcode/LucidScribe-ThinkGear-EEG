@@ -19,6 +19,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         public String Algorithm = "REM Detector";
         public int Threshold = 800;
         private Boolean loaded = false;
+        public Boolean TCMP = false;
 
         public PortForm()
         {
@@ -90,6 +91,11 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
           cmbAlgorithm.Text = xmlSettings.DocumentElement.SelectSingleNode("//Algorithm").InnerText;
           cmbThreshold.Text = xmlSettings.DocumentElement.SelectSingleNode("//Threshold").InnerText;
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//TCMP") != null && xmlSettings.DocumentElement.SelectSingleNode("//TCMP").InnerText == "1")
+          {
+            chkTCMP.Checked = true;
+          }
         }
 
         private void SaveSettings()
@@ -98,6 +104,16 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           defaultSettings += "<Plugin>";
           defaultSettings += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
           defaultSettings += "<Threshold>" + cmbThreshold.Text + "</Threshold>";
+
+          if (chkTCMP.Checked)
+          {
+            defaultSettings += "<TCMP>1</TCMP>";
+          }
+          else
+          {
+            defaultSettings += "<TCMP>0</TCMP>";
+          }
+
           defaultSettings += "</Plugin>";
           defaultSettings += "</LucidScribeData>";
           File.WriteAllText(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd", defaultSettings);
@@ -140,6 +156,14 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         {
           Threshold = Convert.ToInt32(cmbThreshold.Text);
           if (loaded) { SaveSettings(); }
+        }
+
+        private void chkTCMP_CheckedChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          TCMP = chkTCMP.Checked;
+          SaveSettings();
         }
     }
 }

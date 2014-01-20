@@ -7,6 +7,7 @@ using ThinkGearNET;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Drawing;
+using System.Linq;
 
 namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 {
@@ -36,8 +37,11 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
     private static double m_dblLastTheta;
     private static double m_dblRaw;
 
-    private static double m_dblRawTicks;
-    private static bool m_boolClearRaw;
+    private static bool ClearDisplay;
+    private static bool ClearHighscore;
+    private static double DisplayValue;
+    private static double HighscoreValue;
+    public static Boolean TCMP = false;
 
     public static EventHandler<ThinkGearChangedEventArgs> ThinkGearChanged;
 
@@ -59,6 +63,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
                 _thinkGearWrapper.EnableBlinkDetection(true);
                 Algorithm = formPort.Algorithm;
                 Threshold = formPort.Threshold;
+                TCMP = formPort.TCMP;
                 m_boolInitialized = true;
               }
               else
@@ -101,14 +106,29 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       m_dblLastGamma = ((e.ThinkGearState.Gamma1 / 100) + (e.ThinkGearState.Gamma2 / 100)) / 2;
       m_dblLastTheta = e.ThinkGearState.Theta / 1000;
 
-      if (m_boolClearRaw)
+      if (ClearDisplay)
       {
-        m_boolClearRaw = false;
-        m_dblRaw = 0;
-        m_dblRawTicks = 0;
+        ClearDisplay = false;
+        DisplayValue = 0;
       }
+
+      if (ClearHighscore)
+      {
+        ClearHighscore = false;
+        DisplayValue = 0;
+      }
+
       m_dblRaw += e.ThinkGearState.Raw;
-      m_dblRawTicks++;
+
+      if (e.ThinkGearState.Raw >= HighscoreValue)
+      {
+        HighscoreValue = e.ThinkGearState.Raw;
+      }
+
+      if (e.ThinkGearState.Raw >= DisplayValue)
+      {
+        DisplayValue = e.ThinkGearState.Raw;
+      }
 
       if (ThinkGearChanged != null)
       {
@@ -126,13 +146,16 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
     public static Double GetEEG()
     {
-      if (m_dblRawTicks == 0) return 0;
-      return (m_dblRaw / m_dblRawTicks) + 256;
+      double temp = DisplayValue;
+      ClearDisplay = true;
+      return DisplayValue;
     }
 
-    public static void ClearEEG()
+    public static Double GetHighscore()
     {
-      m_boolClearRaw = true;
+      double temp = HighscoreValue;
+      ClearHighscore = true;
+      return HighscoreValue;
     }
 
     public static Double GetREM()
@@ -254,7 +277,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         get
         {
           double dblValue = Device.GetEEG();
-          Device.ClearEEG();
           if (dblValue > 999) { dblValue = 999; }
           if (dblValue < 0) { dblValue = 0; }
           return dblValue;
@@ -278,7 +300,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         return initialized;
       }
 
-      public event Interface.SenseHandler Sensed;
       public void _thinkGearWrapper_ThinkGearChanged(object sender, ThinkGearChangedEventArgs e)
       {
         if (ClearTicks)
@@ -498,6 +519,221 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           return 0;
         }
       }
+    }
+  }
+
+  namespace TCMP
+  {
+    public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase, lucidcode.LucidScribe.TCMP.ITransConsciousnessPlugin
+    {
+
+      public override string Name
+      {
+        get
+        {
+          return "NS TCMP";
+        }
+      }
+
+      public override bool Initialize()
+      {
+        try
+        {
+          return Device.Initialize();
+        }
+        catch (Exception ex)
+        {
+          throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+        }
+      }
+
+      Dictionary<char, String> morse = new Dictionary<char, String>()
+          {
+              {'A' , ".-"},
+              {'B' , "-..."},
+              {'C' , "-.-."},
+              {'D' , "-.."},
+              {'E' , "."},
+              {'F' , "..-."},
+              {'G' , "--."},
+              {'H' , "...."},
+              {'I' , ".."},
+              {'J' , ".---"},
+              {'K' , "-.-"},
+              {'L' , ".-.."},
+              {'M' , "--"},
+              {'N' , "-."},
+              {'O' , "---"},
+              {'P' , ".--."},
+              {'Q' , "--.-"},
+              {'R' , ".-."},
+              {'S' , "..."},
+              {'T' , "-"},
+              {'U' , "..-"},
+              {'V' , "...-"},
+              {'W' , ".--"},
+              {'X' , "-..-"},
+              {'Y' , "-.--"},
+              {'Z' , "--.."},
+              {'0' , "-----"},
+              {'1' , ".----"},
+              {'2' , "..----"},
+              {'3' , "...--"},
+              {'4' , "....-"},
+              {'5' , "....."},
+              {'6' , "-...."},
+              {'7' , "--..."},
+              {'8' , "---.."},
+              {'9' , "----."},
+          };
+
+      List<int> m_arrHistory = new List<int>();
+      Boolean FirstTick = true;
+
+      public override double Value
+      {
+        get
+        {
+          if (!Device.TCMP) { return 0; }
+
+          double tempValue = Device.GetEEG();
+          if (tempValue > 999) { tempValue = 999; }
+          if (tempValue < 0) { tempValue = 0; }
+
+          int signalLength = 0;
+          int dotHeight = 500;
+          int dashHeight = 900;
+
+          // Update the mem list
+          String signal = "";
+
+          if (!FirstTick && (tempValue > dotHeight))
+          {
+              m_arrHistory.Add(Convert.ToInt32(tempValue));
+          }
+
+          if (!FirstTick && m_arrHistory.Count > 0)
+          {
+            m_arrHistory.Add(Convert.ToInt32(tempValue));
+          }
+
+          if (FirstTick && (tempValue > dotHeight))
+          {
+            FirstTick = false;
+          }
+
+          if (!FirstTick && m_arrHistory.Count > 32)
+          {
+
+            //if (m_arrHistory[0] > 400)
+            //{
+
+              //Boolean couldBeDot = false;
+              //Boolean couldBeDash = false;
+              //Boolean isNoise = false;
+
+            // Check if we start on
+              Boolean above = false;
+              Boolean space = false;
+
+              int nextOffset = 0;
+
+              do
+              {
+                
+                int fivePointValue = 0;
+                for (int i = nextOffset; i < m_arrHistory.Count; i++)
+                {
+                  for (int ii = i; ii < m_arrHistory.Count; ii++)
+                  {
+                    if (m_arrHistory[ii] > fivePointValue)
+                    {
+                      fivePointValue = m_arrHistory[ii];
+                    }
+
+                    if (m_arrHistory[ii] < 300)
+                    {
+                      nextOffset = ii + 1;
+                      break;
+                    }
+
+                    if (ii == m_arrHistory.Count - 1)
+                    {
+                      nextOffset = -1;
+                    }
+                  }
+
+                  if (fivePointValue >= dashHeight)
+                  {
+                    signal += "-";
+                    above = true;
+                    signalLength++;
+                    break;
+                  }
+                  else if (fivePointValue >= dotHeight)
+                  {
+                    signal += ".";
+                    above = true;
+                    signalLength++;
+                    break;
+                  }
+
+                  if (i == m_arrHistory.Count - 1)
+                  { 
+                  nextOffset = -1;
+                  }
+
+                }
+
+                if (nextOffset < 0 | nextOffset == m_arrHistory.Count)
+                {
+                  break;
+                }
+
+              } while (true);
+
+              m_arrHistory.RemoveAt(0);
+
+              // Check if the signal is morse
+              try
+              {
+                // Make sure that we have a signal
+                if (signal != "")
+                {
+                  var myValue = morse.First(x => x.Value == signal);
+
+                  if (MessageReceived != null)
+                  {
+                    MessageReceived(myValue.Key.ToString());
+                  }
+
+                  SendKeys.Send(myValue.Key.ToString());
+                  signal = "";
+                  m_arrHistory.Clear();
+                }
+              }
+              catch (Exception ex)
+              {
+                String err = ex.Message;
+              }
+
+            //}
+          }
+
+          if (m_arrHistory.Count > 0)
+          { return 888; }
+
+          return 0;
+        }
+      }
+
+      public override void Dispose()
+      {
+        Device.Dispose();
+      }
+
+      public event lucidcode.LucidScribe.TCMP.MessageReceivedEventHandler MessageReceived;
+
     }
   }
 

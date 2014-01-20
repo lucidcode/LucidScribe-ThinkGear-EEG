@@ -39,6 +39,7 @@
       this.Label5 = new System.Windows.Forms.Label();
       this.Label6 = new System.Windows.Forms.Label();
       this.panel3D3 = new lucidcode.Controls.Panel3D();
+      this.chkTCMP = new System.Windows.Forms.CheckBox();
       this.label8 = new System.Windows.Forms.Label();
       this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
       this.label2 = new System.Windows.Forms.Label();
@@ -63,7 +64,7 @@
       this.pnlPlugins.Controls.Add(this.Panel3D4);
       this.pnlPlugins.Location = new System.Drawing.Point(12, 12);
       this.pnlPlugins.Name = "pnlPlugins";
-      this.pnlPlugins.Size = new System.Drawing.Size(314, 217);
+      this.pnlPlugins.Size = new System.Drawing.Size(359, 284);
       this.pnlPlugins.TabIndex = 5;
       // 
       // lstPorts
@@ -78,7 +79,7 @@
       this.lstPorts.Location = new System.Drawing.Point(3, 25);
       this.lstPorts.MultiSelect = false;
       this.lstPorts.Name = "lstPorts";
-      this.lstPorts.Size = new System.Drawing.Size(308, 189);
+      this.lstPorts.Size = new System.Drawing.Size(353, 256);
       this.lstPorts.TabIndex = 8;
       this.lstPorts.TileSize = new System.Drawing.Size(150, 32);
       this.lstPorts.UseCompatibleStateImageBehavior = false;
@@ -115,7 +116,7 @@
       this.Panel3D4.Controls.Add(this.Label6);
       this.Panel3D4.Location = new System.Drawing.Point(0, 0);
       this.Panel3D4.Name = "Panel3D4";
-      this.Panel3D4.Size = new System.Drawing.Size(314, 24);
+      this.Panel3D4.Size = new System.Drawing.Size(359, 24);
       this.Panel3D4.TabIndex = 4;
       // 
       // Label5
@@ -137,7 +138,7 @@
       this.Label6.ForeColor = System.Drawing.Color.White;
       this.Label6.Location = new System.Drawing.Point(24, 3);
       this.Label6.Name = "Label6";
-      this.Label6.Size = new System.Drawing.Size(287, 19);
+      this.Label6.Size = new System.Drawing.Size(332, 19);
       this.Label6.TabIndex = 3;
       this.Label6.Text = "Select port to connect";
       this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,15 +148,26 @@
       this.panel3D3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                   | System.Windows.Forms.AnchorStyles.Right)));
       this.panel3D3.BackColor = System.Drawing.Color.LightSteelBlue;
+      this.panel3D3.Controls.Add(this.chkTCMP);
       this.panel3D3.Controls.Add(this.label8);
       this.panel3D3.Controls.Add(this.cmbAlgorithm);
       this.panel3D3.Controls.Add(this.label2);
       this.panel3D3.Controls.Add(this.panel3D5);
       this.panel3D3.Controls.Add(this.cmbThreshold);
-      this.panel3D3.Location = new System.Drawing.Point(12, 235);
+      this.panel3D3.Location = new System.Drawing.Point(12, 302);
       this.panel3D3.Name = "panel3D3";
-      this.panel3D3.Size = new System.Drawing.Size(314, 85);
+      this.panel3D3.Size = new System.Drawing.Size(359, 106);
       this.panel3D3.TabIndex = 37;
+      // 
+      // chkTCMP
+      // 
+      this.chkTCMP.Location = new System.Drawing.Point(99, 84);
+      this.chkTCMP.Name = "chkTCMP";
+      this.chkTCMP.Size = new System.Drawing.Size(151, 17);
+      this.chkTCMP.TabIndex = 283;
+      this.chkTCMP.Text = "TCMP";
+      this.chkTCMP.UseVisualStyleBackColor = true;
+      this.chkTCMP.CheckedChanged += new System.EventHandler(this.chkTCMP_CheckedChanged);
       // 
       // label8
       // 
@@ -179,7 +191,7 @@
             "Gamma Detector"});
       this.cmbAlgorithm.Location = new System.Drawing.Point(99, 30);
       this.cmbAlgorithm.Name = "cmbAlgorithm";
-      this.cmbAlgorithm.Size = new System.Drawing.Size(209, 21);
+      this.cmbAlgorithm.Size = new System.Drawing.Size(254, 21);
       this.cmbAlgorithm.TabIndex = 275;
       this.cmbAlgorithm.SelectedIndexChanged += new System.EventHandler(this.cmbAlgorithm_SelectedIndexChanged);
       // 
@@ -202,7 +214,7 @@
       this.panel3D5.Controls.Add(this.label4);
       this.panel3D5.Location = new System.Drawing.Point(0, 0);
       this.panel3D5.Name = "panel3D5";
-      this.panel3D5.Size = new System.Drawing.Size(314, 24);
+      this.panel3D5.Size = new System.Drawing.Size(359, 24);
       this.panel3D5.TabIndex = 4;
       // 
       // label3
@@ -224,7 +236,7 @@
       this.label4.ForeColor = System.Drawing.Color.White;
       this.label4.Location = new System.Drawing.Point(24, 3);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(287, 19);
+      this.label4.Size = new System.Drawing.Size(332, 19);
       this.label4.TabIndex = 3;
       this.label4.Text = "Settings";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -248,7 +260,7 @@
             "1000"});
       this.cmbThreshold.Location = new System.Drawing.Point(99, 57);
       this.cmbThreshold.Name = "cmbThreshold";
-      this.cmbThreshold.Size = new System.Drawing.Size(209, 21);
+      this.cmbThreshold.Size = new System.Drawing.Size(254, 21);
       this.cmbThreshold.TabIndex = 33;
       this.cmbThreshold.SelectedIndexChanged += new System.EventHandler(this.cmbThreshold_SelectedIndexChanged);
       // 
@@ -257,14 +269,14 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.LightSteelBlue;
-      this.ClientSize = new System.Drawing.Size(338, 332);
-      this.Controls.Add(this.panel3D3);
+      this.ClientSize = new System.Drawing.Size(383, 420);
       this.Controls.Add(this.pnlPlugins);
+      this.Controls.Add(this.panel3D3);
       this.Font = new System.Drawing.Font("Verdana", 8.25F);
       this.ForeColor = System.Drawing.Color.MidnightBlue;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "PortForm";
-      this.Text = "Lucid Scribe - NeuroSky MindSet";
+      this.Text = "Lucid Scribe - NeuroSky ThinkGear EEG";
       this.Load += new System.EventHandler(this.PortForm_Load);
       this.pnlPlugins.ResumeLayout(false);
       this.mnuPortsList.ResumeLayout(false);
@@ -293,5 +305,6 @@
     internal System.Windows.Forms.Label label3;
     internal System.Windows.Forms.Label label4;
     private System.Windows.Forms.ComboBox cmbThreshold;
+    private System.Windows.Forms.CheckBox chkTCMP;
   }
 }
