@@ -418,12 +418,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2AA77CECF106097313C3E6572F08B079"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_74CAE4B0BF7440C18EA8ED97292C459A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -443,6 +437,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1FBA81496A2EC06B3748DE845685909D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2AA77CECF106097313C3E6572F08B079"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2210,14 +2210,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe ThinkGear EEG"
-        "ProductCode" = "8:{86099DCF-858D-4DFD-8C7C-E7970B52416C}"
-        "PackageCode" = "8:{FAF9CEB1-6727-4CFB-833E-682CF1E541A0}"
+        "ProductCode" = "8:{2498F124-5800-46B1-B9DA-350BDDFBF29D}"
+        "PackageCode" = "8:{7357943D-D43C-4DB8-9166-FEEF65C03B03}"
         "UpgradeCode" = "8:{9B1E2A82-9D73-4675-9717-2311206ABC4E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.6"
+        "ProductVersion" = "8:1.0.7"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucidcode.com/Contact"

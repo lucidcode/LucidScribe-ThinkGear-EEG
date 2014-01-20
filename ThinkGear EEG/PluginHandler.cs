@@ -300,6 +300,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         return initialized;
       }
 
+      public event Interface.SenseHandler Sensed;
       public void _thinkGearWrapper_ThinkGearChanged(object sender, ThinkGearChangedEventArgs e)
       {
         if (ClearTicks)
@@ -546,8 +547,9 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
         }
       }
-
-      Dictionary<char, String> morse = new Dictionary<char, String>()
+      
+      private static String Morse = "";
+      Dictionary<char, String> Code = new Dictionary<char, String>()
           {
               {'A' , ".-"},
               {'B' , "-..."},
@@ -589,6 +591,8 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
       List<int> m_arrHistory = new List<int>();
       Boolean FirstTick = true;
+      Boolean SpaceSent = true;
+      int TicksSinceSpace = 0;
 
       public override double Value
       {
@@ -622,25 +626,24 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             FirstTick = false;
           }
 
+          if (!SpaceSent & m_arrHistory.Count == 0)
+          {
+            TicksSinceSpace++;
+            if (TicksSinceSpace > 32)
+            {
+              // Send the space key
+              Morse = " ";
+              SendKeys.Send(" ");
+              SpaceSent = true;
+              TicksSinceSpace = 0;
+            }
+          }
+
           if (!FirstTick && m_arrHistory.Count > 32)
           {
-
-            //if (m_arrHistory[0] > 400)
-            //{
-
-              //Boolean couldBeDot = false;
-              //Boolean couldBeDash = false;
-              //Boolean isNoise = false;
-
-            // Check if we start on
-              Boolean above = false;
-              Boolean space = false;
-
               int nextOffset = 0;
-
               do
               {
-                
                 int fivePointValue = 0;
                 for (int i = nextOffset; i < m_arrHistory.Count; i++)
                 {
@@ -666,21 +669,19 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
                   if (fivePointValue >= dashHeight)
                   {
                     signal += "-";
-                    above = true;
                     signalLength++;
                     break;
                   }
                   else if (fivePointValue >= dotHeight)
                   {
                     signal += ".";
-                    above = true;
                     signalLength++;
                     break;
                   }
 
                   if (i == m_arrHistory.Count - 1)
                   { 
-                  nextOffset = -1;
+                    nextOffset = -1;
                   }
 
                 }
@@ -700,24 +701,18 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
                 // Make sure that we have a signal
                 if (signal != "")
                 {
-                  var myValue = morse.First(x => x.Value == signal);
-
-                  if (MessageReceived != null)
-                  {
-                    MessageReceived(myValue.Key.ToString());
-                  }
-
+                  var myValue = Code.First(x => x.Value == signal);
+                  Morse = myValue.Key.ToString();
                   SendKeys.Send(myValue.Key.ToString());
                   signal = "";
                   m_arrHistory.Clear();
+                  SpaceSent = false;
                 }
               }
               catch (Exception ex)
               {
                 String err = ex.Message;
               }
-
-            //}
           }
 
           if (m_arrHistory.Count > 0)
@@ -727,12 +722,20 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         }
       }
 
+      string lucidcode.LucidScribe.TCMP.ITransConsciousnessPlugin.MorseCode
+      {
+        get
+        {
+          String temp = Morse;
+          Morse = "";
+          return temp;
+        }
+      }
+
       public override void Dispose()
       {
         Device.Dispose();
       }
-
-      public event lucidcode.LucidScribe.TCMP.MessageReceivedEventHandler MessageReceived;
 
     }
   }

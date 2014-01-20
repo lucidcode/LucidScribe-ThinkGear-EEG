@@ -95,6 +95,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           if (xmlSettings.DocumentElement.SelectSingleNode("//TCMP") != null && xmlSettings.DocumentElement.SelectSingleNode("//TCMP").InnerText == "1")
           {
             chkTCMP.Checked = true;
+            TCMP = true;
           }
         }
 
