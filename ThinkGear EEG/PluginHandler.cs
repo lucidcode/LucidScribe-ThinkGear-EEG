@@ -590,9 +590,11 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           };
 
       List<int> m_arrHistory = new List<int>();
-      Boolean FirstTick = true;
+      Boolean FirstTick = false;
       Boolean SpaceSent = true;
       int TicksSinceSpace = 0;
+      Boolean Started = false;
+      int PreliminaryTicks = 0;
 
       public override double Value
       {
@@ -603,6 +605,17 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           double tempValue = Device.GetEEG();
           if (tempValue > 999) { tempValue = 999; }
           if (tempValue < 0) { tempValue = 0; }
+
+          if (!Started)
+          {
+            PreliminaryTicks++;
+            if (PreliminaryTicks > 10)
+            {
+              Started = true;
+            }
+
+            return 0;
+          }
 
           int signalLength = 0;
           int dotHeight = 500;
@@ -647,20 +660,20 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
                 int fivePointValue = 0;
                 for (int i = nextOffset; i < m_arrHistory.Count; i++)
                 {
-                  for (int ii = i; ii < m_arrHistory.Count; ii++)
+                  for (int x = i; x < m_arrHistory.Count; x++)
                   {
-                    if (m_arrHistory[ii] > fivePointValue)
+                    if (m_arrHistory[x] > fivePointValue)
                     {
-                      fivePointValue = m_arrHistory[ii];
+                      fivePointValue = m_arrHistory[x];
                     }
 
-                    if (m_arrHistory[ii] < 300)
+                    if (m_arrHistory[x] < 300)
                     {
-                      nextOffset = ii + 1;
+                      nextOffset = x + 1;
                       break;
                     }
 
-                    if (ii == m_arrHistory.Count - 1)
+                    if (x == m_arrHistory.Count - 1)
                     {
                       nextOffset = -1;
                     }
@@ -707,6 +720,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
                   signal = "";
                   m_arrHistory.Clear();
                   SpaceSent = false;
+                  TicksSinceSpace = 0;
                 }
               }
               catch (Exception ex)
