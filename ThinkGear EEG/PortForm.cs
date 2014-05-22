@@ -13,13 +13,17 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 {
     public partial class PortForm : Form
     {
-
-        private string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
+        public static string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
         public String SelectedPort = "";
         public String Algorithm = "REM Detector";
         public int Threshold = 800;
         private Boolean loaded = false;
         public Boolean TCMP = false;
+        public Boolean NZT48 = false;
+        public Boolean tACS = false;
+        public String Target = "ANY";
+        public String StateOn = "A";
+        public String StateOff = "B";
 
         public PortForm()
         {
@@ -74,8 +78,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
         private void LoadSettings()
         {
-          XmlDocument xmlSettings = new XmlDocument();
-
           if (!File.Exists(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd"))
           {
             String defaultSettings = "<LucidScribeData>";
@@ -87,6 +89,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             File.WriteAllText(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd", defaultSettings);
           }
 
+          XmlDocument xmlSettings = new XmlDocument();
           xmlSettings.Load(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd");
 
           cmbAlgorithm.Text = xmlSettings.DocumentElement.SelectSingleNode("//Algorithm").InnerText;
@@ -97,27 +100,84 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             chkTCMP.Checked = true;
             TCMP = true;
           }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//tACS") != null && xmlSettings.DocumentElement.SelectSingleNode("//tACS").InnerText == "1")
+          {
+            chkNZT48.Checked = true;
+            NZT48 = true;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//NZT48") != null && xmlSettings.DocumentElement.SelectSingleNode("//NZT48").InnerText == "1")
+          {
+            chktACS.Checked = true;
+            tACS = true;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//Target") != null)
+          {
+            txtTarget.Text = xmlSettings.DocumentElement.SelectSingleNode("//Target").InnerText;
+            Target = xmlSettings.DocumentElement.SelectSingleNode("//Target").InnerText;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//StateOn") != null)
+          {
+            cmbStateOn.Text = xmlSettings.DocumentElement.SelectSingleNode("//StateOn").InnerText;
+            StateOn = xmlSettings.DocumentElement.SelectSingleNode("//StateOn").InnerText;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//StateOff") != null)
+          {
+            cmbStateOff.Text = xmlSettings.DocumentElement.SelectSingleNode("//StateOff").InnerText;
+            StateOff = xmlSettings.DocumentElement.SelectSingleNode("//StateOff").InnerText;
+          }
+
+          if (File.Exists(m_strPath + "Plugins\\NZT-48.video.lsd"))
+          {
+            txtVideo.Text = File.ReadAllText(m_strPath + "Plugins\\NZT-48.video.lsd");
+          }
         }
 
         private void SaveSettings()
         {
-          String defaultSettings = "<LucidScribeData>";
-          defaultSettings += "<Plugin>";
-          defaultSettings += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
-          defaultSettings += "<Threshold>" + cmbThreshold.Text + "</Threshold>";
+          String settingsXML = "<LucidScribeData>";
+          settingsXML += "<Plugin>";
+          settingsXML += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
+          settingsXML += "<Threshold>" + cmbThreshold.Text + "</Threshold>";
 
           if (chkTCMP.Checked)
           {
-            defaultSettings += "<TCMP>1</TCMP>";
+            settingsXML += "<TCMP>1</TCMP>";
           }
           else
           {
-            defaultSettings += "<TCMP>0</TCMP>";
+            settingsXML += "<TCMP>0</TCMP>";
           }
 
-          defaultSettings += "</Plugin>";
-          defaultSettings += "</LucidScribeData>";
-          File.WriteAllText(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd", defaultSettings);
+          if (chkNZT48.Checked)
+          {
+            settingsXML += "<NZT48>1</NZT48>";
+          }
+          else
+          {
+            settingsXML += "<NZT48>0</NZT48>";
+          }
+
+          if (chktACS.Checked)
+          {
+            settingsXML += "<tACS>1</tACS>";
+          }
+          else
+          {
+            settingsXML += "<tACS>0</tACS>";
+          }
+
+          settingsXML += "<Target>" + txtTarget.Text + "</Target>";
+          settingsXML += "<StateOn>" + cmbStateOn.Text + "</StateOn>";
+          settingsXML += "<StateOff>" + cmbStateOff.Text + "</StateOff>";
+
+          settingsXML += "</Plugin>";
+          settingsXML += "</LucidScribeData>";
+          File.WriteAllText(m_strPath + "Plugins\\ThinkGear.EEG.User.lsd", settingsXML);
         }
 
         private void lstPlaylists_MouseMove(object sender, MouseEventArgs e)
@@ -164,6 +224,66 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           if (!loaded) { return; }
 
           TCMP = chkTCMP.Checked;
+          SaveSettings();
+        }
+
+        private void chkNZT48_CheckedChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          NZT48 = chkNZT48.Checked;
+          SaveSettings();
+        }
+
+        private void txtVideo_TextChanged(object sender, EventArgs e)
+        {
+          SaveNZT48Settings();
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+          OpenFileDialog openFileDialog = new OpenFileDialog();
+          openFileDialog.Title = "Select NZT-48 Video";
+          if (openFileDialog.ShowDialog() == DialogResult.OK)
+          {
+            txtVideo.Text = openFileDialog.FileName;
+          }
+        }
+
+        private void SaveNZT48Settings()
+        {
+          File.WriteAllText(m_strPath + "Plugins\\NZT-48.video.lsd", txtVideo.Text);
+        }
+
+        private void chktACS_CheckedChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          tACS = chktACS.Checked;
+          SaveSettings();
+        }
+
+        private void txtTarget_TextChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          Target = txtTarget.Text;
+          SaveSettings();
+        }
+
+        private void cmbStateOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          StateOn = cmbStateOn.Text;
+          SaveSettings();
+        }
+
+        private void cmbStateOff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          StateOff = cmbStateOff.Text;
           SaveSettings();
         }
     }

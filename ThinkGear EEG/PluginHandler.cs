@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Linq;
+using System.IO;
+using System.Xml;
 
 namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 {
@@ -42,6 +44,12 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
     private static double DisplayValue;
     private static double HighscoreValue;
     public static Boolean TCMP = false;
+    public static Boolean NZT48 = false;
+    public static Boolean tACS = false;
+    public static String Target = "ANY";
+    public static String StateOn = "A";
+    public static String StateOff = "A";
+    public static Boolean REMDetected = false;
 
     public static EventHandler<ThinkGearChangedEventArgs> ThinkGearChanged;
 
@@ -64,6 +72,12 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
                 Algorithm = formPort.Algorithm;
                 Threshold = formPort.Threshold;
                 TCMP = formPort.TCMP;
+                NZT48 = formPort.NZT48;
+                tACS = formPort.tACS;
+                Target = formPort.Target;
+                StateOn = formPort.StateOn;
+                StateOff = formPort.StateOff;
+
                 m_boolInitialized = true;
               }
               else
@@ -136,7 +150,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       }
     }
 
-    
+
 
     public static void Dispose()
     {
@@ -497,7 +511,103 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             }
 
             if (boolDreaming)
-            { return 888; }
+            {
+              // Check if we need to turn on a tACS device
+              if (Device.tACS)
+              {
+                try
+                {
+                  YocoWrapper.YRelay relay;
+                  string errorMessage = "";
+
+                  if (YocoWrapper.YAPI.RegisterHub("usb", ref errorMessage) != YocoWrapper.YAPI.SUCCESS)
+                  {
+                    MessageBox.Show("tACS RegisterHub error: " + errorMessage, "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  }
+
+                  if (Device.Target == "ANY")
+                  {
+                    relay = YocoWrapper.YRelay.FirstRelay();
+                    if (relay == null)
+                    {
+                      MessageBox.Show("tACS RegisterHub error: No module connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                  }
+                  else relay = YocoWrapper.YRelay.FindRelay(Device.Target + ".relay1");
+
+                  if (relay.isOnline())
+                  {
+                    if (Device.StateOn == "A")
+                    {
+                      relay.set_state(YocoWrapper.YRelay.STATE_A);
+                    }
+                    else
+                    {
+                      relay.set_state(YocoWrapper.YRelay.STATE_B);
+                    }
+                  }
+                  else
+                  {
+                    MessageBox.Show("tACS RegisterHub error: Module not connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  }
+                }
+                catch (Exception ex)
+                { }
+              }
+
+              Device.REMDetected = true;
+              return 888;
+            }
+            else
+            {
+              if (Device.REMDetected)
+              {
+                Device.REMDetected = false;
+
+                // Check if we need to turn off a tACS device
+                if (Device.tACS)
+                {
+                  try
+                  {
+                    YocoWrapper.YRelay relay;
+                    string errorMessage = "";
+
+                    if (YocoWrapper.YAPI.RegisterHub("usb", ref errorMessage) != YocoWrapper.YAPI.SUCCESS)
+                    {
+                      MessageBox.Show("tACS RegisterHub error: " + errorMessage, "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    if (Device.Target == "ANY")
+                    {
+                      relay = YocoWrapper.YRelay.FirstRelay();
+                      if (relay == null)
+                      {
+                        MessageBox.Show("tACS RegisterHub error: No module connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                      }
+                    }
+                    else relay = YocoWrapper.YRelay.FindRelay(Device.Target + ".relay1");
+
+                    if (relay.isOnline())
+                    {
+                      if (Device.StateOff == "A")
+                      {
+                        relay.set_state(YocoWrapper.YRelay.STATE_A);
+                      }
+                      else
+                      {
+                        relay.set_state(YocoWrapper.YRelay.STATE_B);
+                      }
+                    }
+                    else
+                    {
+                      MessageBox.Show("tACS RegisterHub error: Module not connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                  }
+                  catch (Exception ex)
+                  { }
+                }
+              }
+            }
 
             if (intBlinks > 10) { intBlinks = 10; }
             return intBlinks * 100;
@@ -547,7 +657,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
         }
       }
-      
+
       private static String Morse = "";
       Dictionary<char, String> Code = new Dictionary<char, String>()
           {
@@ -626,7 +736,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
           if (!FirstTick && (tempValue > dotHeight))
           {
-              m_arrHistory.Add(Convert.ToInt32(tempValue));
+            m_arrHistory.Add(Convert.ToInt32(tempValue));
           }
 
           if (!FirstTick && m_arrHistory.Count > 0)
@@ -654,79 +764,79 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
           if (!FirstTick && m_arrHistory.Count > 32)
           {
-              int nextOffset = 0;
-              do
+            int nextOffset = 0;
+            do
+            {
+              int fivePointValue = 0;
+              for (int i = nextOffset; i < m_arrHistory.Count; i++)
               {
-                int fivePointValue = 0;
-                for (int i = nextOffset; i < m_arrHistory.Count; i++)
+                for (int x = i; x < m_arrHistory.Count; x++)
                 {
-                  for (int x = i; x < m_arrHistory.Count; x++)
+                  if (m_arrHistory[x] > fivePointValue)
                   {
-                    if (m_arrHistory[x] > fivePointValue)
-                    {
-                      fivePointValue = m_arrHistory[x];
-                    }
-
-                    if (m_arrHistory[x] < 300)
-                    {
-                      nextOffset = x + 1;
-                      break;
-                    }
-
-                    if (x == m_arrHistory.Count - 1)
-                    {
-                      nextOffset = -1;
-                    }
+                    fivePointValue = m_arrHistory[x];
                   }
 
-                  if (fivePointValue >= dashHeight)
+                  if (m_arrHistory[x] < 300)
                   {
-                    signal += "-";
-                    signalLength++;
-                    break;
-                  }
-                  else if (fivePointValue >= dotHeight)
-                  {
-                    signal += ".";
-                    signalLength++;
+                    nextOffset = x + 1;
                     break;
                   }
 
-                  if (i == m_arrHistory.Count - 1)
-                  { 
+                  if (x == m_arrHistory.Count - 1)
+                  {
                     nextOffset = -1;
                   }
-
                 }
 
-                if (nextOffset < 0 | nextOffset == m_arrHistory.Count)
+                if (fivePointValue >= dashHeight)
                 {
+                  signal += "-";
+                  signalLength++;
+                  break;
+                }
+                else if (fivePointValue >= dotHeight)
+                {
+                  signal += ".";
+                  signalLength++;
                   break;
                 }
 
-              } while (true);
-
-              m_arrHistory.RemoveAt(0);
-
-              // Check if the signal is morse
-              try
-              {
-                // Make sure that we have a signal
-                if (signal != "")
+                if (i == m_arrHistory.Count - 1)
                 {
-                  var myValue = Code.First(x => x.Value == signal);
-                  Morse = myValue.Key.ToString();
-                  SendKeys.Send(myValue.Key.ToString());
-                  signal = "";
-                  m_arrHistory.Clear();
-                  SpaceSent = false;
-                  TicksSinceSpace = 0;
+                  nextOffset = -1;
                 }
+
               }
-              catch (Exception ex)
+
+              if (nextOffset < 0 | nextOffset == m_arrHistory.Count)
               {
-                String err = ex.Message;
+                break;
               }
+
+            } while (true);
+
+            m_arrHistory.RemoveAt(0);
+
+            // Check if the signal is morse
+            try
+            {
+              // Make sure that we have a signal
+              if (signal != "")
+              {
+                var myValue = Code.First(x => x.Value == signal);
+                Morse = myValue.Key.ToString();
+                SendKeys.Send(myValue.Key.ToString());
+                signal = "";
+                m_arrHistory.Clear();
+                SpaceSent = false;
+                TicksSinceSpace = 0;
+              }
+            }
+            catch (Exception ex)
+            {
+              String err = ex.Message;
+            }
           }
 
           if (m_arrHistory.Count > 0)
@@ -743,6 +853,64 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           String temp = Morse;
           Morse = "";
           return temp;
+        }
+      }
+
+      public override void Dispose()
+      {
+        Device.Dispose();
+      }
+
+    }
+  }
+
+  namespace NZT48
+  {
+    public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
+    {
+
+      public override string Name
+      {
+        get
+        {
+          return "NZT-48";
+        }
+      }
+
+      public override bool Initialize()
+      {
+        try
+        {
+          return Device.Initialize();
+        }
+        catch (Exception ex)
+        {
+          throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+        }
+      }
+
+      public override double Value
+      {
+        get
+        {
+          if (!Device.NZT48) { return 0; }
+
+          double tempValue = 0;
+
+          if (Device.Algorithm == "Beta")
+          {
+            tempValue = Device.GetBeta();
+          }
+
+          if (tempValue > 999) { tempValue = 999; }
+          if (tempValue < 0) { tempValue = 0; }
+
+          if (tempValue > Device.Threshold)
+          {
+            return 888;
+          }
+
+          return 0;
         }
       }
 

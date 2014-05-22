@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A54F6C6-13D4-4DCA-8A1C-DCCE30A0B2D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YocoWrapper</RootNamespace>
+    <AssemblyName>YocoWrapper</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="yocto_api\yocto_accelerometer.cs" />
+    <Compile Include="yocto_api\yocto_altitude.cs" />
+    <Compile Include="yocto_api\yocto_anbutton.cs" />
+    <Compile Include="yocto_api\yocto_api.cs" />
+    <Compile Include="yocto_api\yocto_carbondioxide.cs" />
+    <Compile Include="yocto_api\yocto_colorled.cs" />
+    <Compile Include="yocto_api\yocto_compass.cs" />
+    <Compile Include="yocto_api\yocto_current.cs" />
+    <Compile Include="yocto_api\yocto_datalogger.cs" />
+    <Compile Include="yocto_api\yocto_digitalio.cs" />
+    <Compile Include="yocto_api\yocto_display.cs" />
+    <Compile Include="yocto_api\yocto_dualpower.cs" />
+    <Compile Include="yocto_api\yocto_files.cs" />
+    <Compile Include="yocto_api\yocto_genericsensor.cs" />
+    <Compile Include="yocto_api\yocto_gyro.cs" />
+    <Compile Include="yocto_api\yocto_hubport.cs" />
+    <Compile Include="yocto_api\yocto_humidity.cs" />
+    <Compile Include="yocto_api\yocto_led.cs" />
+    <Compile Include="yocto_api\yocto_lightsensor.cs" />
+    <Compile Include="yocto_api\yocto_magnetometer.cs" />
+    <Compile Include="yocto_api\yocto_motor.cs" />
+    <Compile Include="yocto_api\yocto_network.cs" />
+    <Compile Include="yocto_api\yocto_oscontrol.cs" />
+    <Compile Include="yocto_api\yocto_power.cs" />
+    <Compile Include="yocto_api\yocto_pressure.cs" />
+    <Compile Include="yocto_api\yocto_pwmoutput.cs" />
+    <Compile Include="yocto_api\yocto_pwmpowersource.cs" />
+    <Compile Include="yocto_api\yocto_realtimeclock.cs" />
+    <Compile Include="yocto_api\yocto_refframe.cs" />
+    <Compile Include="yocto_api\yocto_relay.cs" />
+    <Compile Include="yocto_api\yocto_servo.cs" />
+    <Compile Include="yocto_api\yocto_temperature.cs" />
+    <Compile Include="yocto_api\yocto_tilt.cs" />
+    <Compile Include="yocto_api\yocto_voc.cs" />
+    <Compile Include="yocto_api\yocto_voltage.cs" />
+    <Compile Include="yocto_api\yocto_wakeupmonitor.cs" />
+    <Compile Include="yocto_api\yocto_wakeupschedule.cs" />
+    <Compile Include="yocto_api\yocto_watchdog.cs" />
+    <Compile Include="yocto_api\yocto_wireless.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

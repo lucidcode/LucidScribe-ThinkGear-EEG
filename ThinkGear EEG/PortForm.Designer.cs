@@ -39,6 +39,13 @@
       this.Label5 = new System.Windows.Forms.Label();
       this.Label6 = new System.Windows.Forms.Label();
       this.panel3D3 = new lucidcode.Controls.Panel3D();
+      this.cmbStateOff = new System.Windows.Forms.ComboBox();
+      this.cmbStateOn = new System.Windows.Forms.ComboBox();
+      this.txtTarget = new System.Windows.Forms.TextBox();
+      this.chktACS = new System.Windows.Forms.CheckBox();
+      this.btnBrowse = new System.Windows.Forms.Button();
+      this.txtVideo = new System.Windows.Forms.TextBox();
+      this.chkNZT48 = new System.Windows.Forms.CheckBox();
       this.chkTCMP = new System.Windows.Forms.CheckBox();
       this.label8 = new System.Windows.Forms.Label();
       this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
@@ -64,7 +71,7 @@
       this.pnlPlugins.Controls.Add(this.Panel3D4);
       this.pnlPlugins.Location = new System.Drawing.Point(12, 12);
       this.pnlPlugins.Name = "pnlPlugins";
-      this.pnlPlugins.Size = new System.Drawing.Size(359, 284);
+      this.pnlPlugins.Size = new System.Drawing.Size(359, 247);
       this.pnlPlugins.TabIndex = 5;
       // 
       // lstPorts
@@ -79,7 +86,7 @@
       this.lstPorts.Location = new System.Drawing.Point(3, 25);
       this.lstPorts.MultiSelect = false;
       this.lstPorts.Name = "lstPorts";
-      this.lstPorts.Size = new System.Drawing.Size(353, 256);
+      this.lstPorts.Size = new System.Drawing.Size(353, 219);
       this.lstPorts.TabIndex = 8;
       this.lstPorts.TileSize = new System.Drawing.Size(150, 32);
       this.lstPorts.UseCompatibleStateImageBehavior = false;
@@ -148,20 +155,107 @@
       this.panel3D3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                   | System.Windows.Forms.AnchorStyles.Right)));
       this.panel3D3.BackColor = System.Drawing.Color.LightSteelBlue;
+      this.panel3D3.Controls.Add(this.cmbStateOff);
+      this.panel3D3.Controls.Add(this.cmbStateOn);
+      this.panel3D3.Controls.Add(this.txtTarget);
+      this.panel3D3.Controls.Add(this.chktACS);
+      this.panel3D3.Controls.Add(this.btnBrowse);
+      this.panel3D3.Controls.Add(this.txtVideo);
+      this.panel3D3.Controls.Add(this.chkNZT48);
       this.panel3D3.Controls.Add(this.chkTCMP);
       this.panel3D3.Controls.Add(this.label8);
       this.panel3D3.Controls.Add(this.cmbAlgorithm);
       this.panel3D3.Controls.Add(this.label2);
       this.panel3D3.Controls.Add(this.panel3D5);
       this.panel3D3.Controls.Add(this.cmbThreshold);
-      this.panel3D3.Location = new System.Drawing.Point(12, 302);
+      this.panel3D3.Location = new System.Drawing.Point(12, 265);
       this.panel3D3.Name = "panel3D3";
-      this.panel3D3.Size = new System.Drawing.Size(359, 106);
+      this.panel3D3.Size = new System.Drawing.Size(359, 162);
       this.panel3D3.TabIndex = 37;
+      // 
+      // cmbStateOff
+      // 
+      this.cmbStateOff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbStateOff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbStateOff.FormattingEnabled = true;
+      this.cmbStateOff.Items.AddRange(new object[] {
+            "A",
+            "B"});
+      this.cmbStateOff.Location = new System.Drawing.Point(286, 112);
+      this.cmbStateOff.Name = "cmbStateOff";
+      this.cmbStateOff.Size = new System.Drawing.Size(67, 21);
+      this.cmbStateOff.TabIndex = 290;
+      this.cmbStateOff.SelectedIndexChanged += new System.EventHandler(this.cmbStateOff_SelectedIndexChanged);
+      // 
+      // cmbStateOn
+      // 
+      this.cmbStateOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbStateOn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbStateOn.FormattingEnabled = true;
+      this.cmbStateOn.Items.AddRange(new object[] {
+            "A",
+            "B"});
+      this.cmbStateOn.Location = new System.Drawing.Point(213, 112);
+      this.cmbStateOn.Name = "cmbStateOn";
+      this.cmbStateOn.Size = new System.Drawing.Size(67, 21);
+      this.cmbStateOn.TabIndex = 289;
+      this.cmbStateOn.SelectedIndexChanged += new System.EventHandler(this.cmbStateOn_SelectedIndexChanged);
+      // 
+      // txtTarget
+      // 
+      this.txtTarget.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtTarget.Location = new System.Drawing.Point(99, 111);
+      this.txtTarget.Name = "txtTarget";
+      this.txtTarget.Size = new System.Drawing.Size(108, 21);
+      this.txtTarget.TabIndex = 288;
+      this.txtTarget.Text = "ANY";
+      this.txtTarget.TextChanged += new System.EventHandler(this.txtTarget_TextChanged);
+      // 
+      // chktACS
+      // 
+      this.chktACS.Location = new System.Drawing.Point(9, 109);
+      this.chktACS.Name = "chktACS";
+      this.chktACS.Size = new System.Drawing.Size(151, 17);
+      this.chktACS.TabIndex = 287;
+      this.chktACS.Text = "tACS";
+      this.chktACS.UseVisualStyleBackColor = true;
+      this.chktACS.CheckedChanged += new System.EventHandler(this.chktACS_CheckedChanged);
+      // 
+      // btnBrowse
+      // 
+      this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnBrowse.Location = new System.Drawing.Point(323, 83);
+      this.btnBrowse.Name = "btnBrowse";
+      this.btnBrowse.Size = new System.Drawing.Size(30, 23);
+      this.btnBrowse.TabIndex = 286;
+      this.btnBrowse.Text = "...";
+      this.btnBrowse.UseVisualStyleBackColor = true;
+      this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+      // 
+      // txtVideo
+      // 
+      this.txtVideo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtVideo.Location = new System.Drawing.Point(99, 84);
+      this.txtVideo.Name = "txtVideo";
+      this.txtVideo.Size = new System.Drawing.Size(218, 21);
+      this.txtVideo.TabIndex = 285;
+      this.txtVideo.TextChanged += new System.EventHandler(this.txtVideo_TextChanged);
+      // 
+      // chkNZT48
+      // 
+      this.chkNZT48.Location = new System.Drawing.Point(9, 86);
+      this.chkNZT48.Name = "chkNZT48";
+      this.chkNZT48.Size = new System.Drawing.Size(88, 17);
+      this.chkNZT48.TabIndex = 284;
+      this.chkNZT48.Text = "NZT-48";
+      this.chkNZT48.UseVisualStyleBackColor = true;
+      this.chkNZT48.CheckedChanged += new System.EventHandler(this.chkNZT48_CheckedChanged);
       // 
       // chkTCMP
       // 
-      this.chkTCMP.Location = new System.Drawing.Point(99, 84);
+      this.chkTCMP.Location = new System.Drawing.Point(9, 134);
       this.chkTCMP.Name = "chkTCMP";
       this.chkTCMP.Size = new System.Drawing.Size(151, 17);
       this.chkTCMP.TabIndex = 283;
@@ -188,7 +282,8 @@
       this.cmbAlgorithm.Items.AddRange(new object[] {
             "Motion Detector",
             "REM Detector",
-            "Gamma Detector"});
+            "Gamma Detector",
+            "Beta"});
       this.cmbAlgorithm.Location = new System.Drawing.Point(99, 30);
       this.cmbAlgorithm.Name = "cmbAlgorithm";
       this.cmbAlgorithm.Size = new System.Drawing.Size(254, 21);
@@ -249,14 +344,23 @@
       this.cmbThreshold.FormattingEnabled = true;
       this.cmbThreshold.Items.AddRange(new object[] {
             "100",
+            "150",
             "200",
+            "250",
             "300",
+            "350",
             "400",
+            "450",
             "500",
+            "550",
             "600",
+            "650",
             "700",
+            "750",
             "800",
+            "850",
             "900",
+            "950",
             "1000"});
       this.cmbThreshold.Location = new System.Drawing.Point(99, 57);
       this.cmbThreshold.Name = "cmbThreshold";
@@ -269,7 +373,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.LightSteelBlue;
-      this.ClientSize = new System.Drawing.Size(383, 420);
+      this.ClientSize = new System.Drawing.Size(383, 439);
       this.Controls.Add(this.pnlPlugins);
       this.Controls.Add(this.panel3D3);
       this.Font = new System.Drawing.Font("Verdana", 8.25F);
@@ -282,6 +386,7 @@
       this.mnuPortsList.ResumeLayout(false);
       this.Panel3D4.ResumeLayout(false);
       this.panel3D3.ResumeLayout(false);
+      this.panel3D3.PerformLayout();
       this.panel3D5.ResumeLayout(false);
       this.ResumeLayout(false);
 
@@ -306,5 +411,12 @@
     internal System.Windows.Forms.Label label4;
     private System.Windows.Forms.ComboBox cmbThreshold;
     private System.Windows.Forms.CheckBox chkTCMP;
+    private System.Windows.Forms.Button btnBrowse;
+    private System.Windows.Forms.TextBox txtVideo;
+    private System.Windows.Forms.CheckBox chkNZT48;
+    private System.Windows.Forms.CheckBox chktACS;
+    private System.Windows.Forms.ComboBox cmbStateOn;
+    private System.Windows.Forms.TextBox txtTarget;
+    private System.Windows.Forms.ComboBox cmbStateOff;
   }
 }
