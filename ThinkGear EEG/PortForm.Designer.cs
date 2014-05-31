@@ -39,6 +39,10 @@
       this.Label5 = new System.Windows.Forms.Label();
       this.Label6 = new System.Windows.Forms.Label();
       this.panel3D3 = new lucidcode.Controls.Panel3D();
+      this.txtArduinoOff = new System.Windows.Forms.TextBox();
+      this.cmbArduinoPort = new System.Windows.Forms.ComboBox();
+      this.txtArduinoOn = new System.Windows.Forms.TextBox();
+      this.chkArduino = new System.Windows.Forms.CheckBox();
       this.cmbStateOff = new System.Windows.Forms.ComboBox();
       this.cmbStateOn = new System.Windows.Forms.ComboBox();
       this.txtTarget = new System.Windows.Forms.TextBox();
@@ -54,6 +58,7 @@
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.cmbThreshold = new System.Windows.Forms.ComboBox();
+      this.cmbArduinoDelay = new System.Windows.Forms.ComboBox();
       this.pnlPlugins.SuspendLayout();
       this.mnuPortsList.SuspendLayout();
       this.Panel3D4.SuspendLayout();
@@ -71,7 +76,7 @@
       this.pnlPlugins.Controls.Add(this.Panel3D4);
       this.pnlPlugins.Location = new System.Drawing.Point(12, 12);
       this.pnlPlugins.Name = "pnlPlugins";
-      this.pnlPlugins.Size = new System.Drawing.Size(359, 247);
+      this.pnlPlugins.Size = new System.Drawing.Size(359, 246);
       this.pnlPlugins.TabIndex = 5;
       // 
       // lstPorts
@@ -86,7 +91,7 @@
       this.lstPorts.Location = new System.Drawing.Point(3, 25);
       this.lstPorts.MultiSelect = false;
       this.lstPorts.Name = "lstPorts";
-      this.lstPorts.Size = new System.Drawing.Size(353, 219);
+      this.lstPorts.Size = new System.Drawing.Size(353, 218);
       this.lstPorts.TabIndex = 8;
       this.lstPorts.TileSize = new System.Drawing.Size(150, 32);
       this.lstPorts.UseCompatibleStateImageBehavior = false;
@@ -155,6 +160,11 @@
       this.panel3D3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                   | System.Windows.Forms.AnchorStyles.Right)));
       this.panel3D3.BackColor = System.Drawing.Color.LightSteelBlue;
+      this.panel3D3.Controls.Add(this.cmbArduinoDelay);
+      this.panel3D3.Controls.Add(this.txtArduinoOff);
+      this.panel3D3.Controls.Add(this.cmbArduinoPort);
+      this.panel3D3.Controls.Add(this.txtArduinoOn);
+      this.panel3D3.Controls.Add(this.chkArduino);
       this.panel3D3.Controls.Add(this.cmbStateOff);
       this.panel3D3.Controls.Add(this.cmbStateOn);
       this.panel3D3.Controls.Add(this.txtTarget);
@@ -168,10 +178,55 @@
       this.panel3D3.Controls.Add(this.label2);
       this.panel3D3.Controls.Add(this.panel3D5);
       this.panel3D3.Controls.Add(this.cmbThreshold);
-      this.panel3D3.Location = new System.Drawing.Point(12, 265);
+      this.panel3D3.Location = new System.Drawing.Point(12, 264);
       this.panel3D3.Name = "panel3D3";
-      this.panel3D3.Size = new System.Drawing.Size(359, 162);
+      this.panel3D3.Size = new System.Drawing.Size(359, 195);
       this.panel3D3.TabIndex = 37;
+      // 
+      // txtArduinoOff
+      // 
+      this.txtArduinoOff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtArduinoOff.Location = new System.Drawing.Point(309, 138);
+      this.txtArduinoOff.Name = "txtArduinoOff";
+      this.txtArduinoOff.Size = new System.Drawing.Size(44, 21);
+      this.txtArduinoOff.TabIndex = 294;
+      this.txtArduinoOff.Text = "0";
+      this.txtArduinoOff.TextChanged += new System.EventHandler(this.txtArduinoOff_TextChanged);
+      // 
+      // cmbArduinoPort
+      // 
+      this.cmbArduinoPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbArduinoPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbArduinoPort.FormattingEnabled = true;
+      this.cmbArduinoPort.Items.AddRange(new object[] {
+            "A",
+            "B"});
+      this.cmbArduinoPort.Location = new System.Drawing.Point(99, 138);
+      this.cmbArduinoPort.Name = "cmbArduinoPort";
+      this.cmbArduinoPort.Size = new System.Drawing.Size(74, 21);
+      this.cmbArduinoPort.TabIndex = 293;
+      this.cmbArduinoPort.SelectedIndexChanged += new System.EventHandler(this.cmbArduinoPort_SelectedIndexChanged);
+      // 
+      // txtArduinoOn
+      // 
+      this.txtArduinoOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtArduinoOn.Location = new System.Drawing.Point(259, 138);
+      this.txtArduinoOn.Name = "txtArduinoOn";
+      this.txtArduinoOn.Size = new System.Drawing.Size(44, 21);
+      this.txtArduinoOn.TabIndex = 292;
+      this.txtArduinoOn.Text = "1";
+      this.txtArduinoOn.TextChanged += new System.EventHandler(this.txtArduinoOn_TextChanged);
+      // 
+      // chkArduino
+      // 
+      this.chkArduino.Location = new System.Drawing.Point(9, 140);
+      this.chkArduino.Name = "chkArduino";
+      this.chkArduino.Size = new System.Drawing.Size(88, 17);
+      this.chkArduino.TabIndex = 291;
+      this.chkArduino.Text = "Arduino";
+      this.chkArduino.UseVisualStyleBackColor = true;
+      this.chkArduino.CheckedChanged += new System.EventHandler(this.chkArduino_CheckedChanged);
       // 
       // cmbStateOff
       // 
@@ -181,9 +236,9 @@
       this.cmbStateOff.Items.AddRange(new object[] {
             "A",
             "B"});
-      this.cmbStateOff.Location = new System.Drawing.Point(286, 112);
+      this.cmbStateOff.Location = new System.Drawing.Point(309, 112);
       this.cmbStateOff.Name = "cmbStateOff";
-      this.cmbStateOff.Size = new System.Drawing.Size(67, 21);
+      this.cmbStateOff.Size = new System.Drawing.Size(44, 21);
       this.cmbStateOff.TabIndex = 290;
       this.cmbStateOff.SelectedIndexChanged += new System.EventHandler(this.cmbStateOff_SelectedIndexChanged);
       // 
@@ -195,9 +250,9 @@
       this.cmbStateOn.Items.AddRange(new object[] {
             "A",
             "B"});
-      this.cmbStateOn.Location = new System.Drawing.Point(213, 112);
+      this.cmbStateOn.Location = new System.Drawing.Point(259, 111);
       this.cmbStateOn.Name = "cmbStateOn";
-      this.cmbStateOn.Size = new System.Drawing.Size(67, 21);
+      this.cmbStateOn.Size = new System.Drawing.Size(44, 21);
       this.cmbStateOn.TabIndex = 289;
       this.cmbStateOn.SelectedIndexChanged += new System.EventHandler(this.cmbStateOn_SelectedIndexChanged);
       // 
@@ -207,16 +262,16 @@
                   | System.Windows.Forms.AnchorStyles.Right)));
       this.txtTarget.Location = new System.Drawing.Point(99, 111);
       this.txtTarget.Name = "txtTarget";
-      this.txtTarget.Size = new System.Drawing.Size(108, 21);
+      this.txtTarget.Size = new System.Drawing.Size(154, 21);
       this.txtTarget.TabIndex = 288;
       this.txtTarget.Text = "ANY";
       this.txtTarget.TextChanged += new System.EventHandler(this.txtTarget_TextChanged);
       // 
       // chktACS
       // 
-      this.chktACS.Location = new System.Drawing.Point(9, 109);
+      this.chktACS.Location = new System.Drawing.Point(9, 113);
       this.chktACS.Name = "chktACS";
-      this.chktACS.Size = new System.Drawing.Size(151, 17);
+      this.chktACS.Size = new System.Drawing.Size(88, 17);
       this.chktACS.TabIndex = 287;
       this.chktACS.Text = "tACS";
       this.chktACS.UseVisualStyleBackColor = true;
@@ -255,7 +310,7 @@
       // 
       // chkTCMP
       // 
-      this.chkTCMP.Location = new System.Drawing.Point(9, 134);
+      this.chkTCMP.Location = new System.Drawing.Point(9, 166);
       this.chkTCMP.Name = "chkTCMP";
       this.chkTCMP.Size = new System.Drawing.Size(151, 17);
       this.chkTCMP.TabIndex = 283;
@@ -368,12 +423,34 @@
       this.cmbThreshold.TabIndex = 33;
       this.cmbThreshold.SelectedIndexChanged += new System.EventHandler(this.cmbThreshold_SelectedIndexChanged);
       // 
+      // cmbArduinoDelay
+      // 
+      this.cmbArduinoDelay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbArduinoDelay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbArduinoDelay.FormattingEnabled = true;
+      this.cmbArduinoDelay.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+      this.cmbArduinoDelay.Location = new System.Drawing.Point(179, 138);
+      this.cmbArduinoDelay.Name = "cmbArduinoDelay";
+      this.cmbArduinoDelay.Size = new System.Drawing.Size(74, 21);
+      this.cmbArduinoDelay.TabIndex = 295;
+      this.cmbArduinoDelay.SelectedIndexChanged += new System.EventHandler(this.cmbArduinoDelay_SelectedIndexChanged);
+      // 
       // PortForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.LightSteelBlue;
-      this.ClientSize = new System.Drawing.Size(383, 439);
+      this.ClientSize = new System.Drawing.Size(383, 471);
       this.Controls.Add(this.pnlPlugins);
       this.Controls.Add(this.panel3D3);
       this.Font = new System.Drawing.Font("Verdana", 8.25F);
@@ -418,5 +495,10 @@
     private System.Windows.Forms.ComboBox cmbStateOn;
     private System.Windows.Forms.TextBox txtTarget;
     private System.Windows.Forms.ComboBox cmbStateOff;
+    private System.Windows.Forms.ComboBox cmbArduinoPort;
+    private System.Windows.Forms.TextBox txtArduinoOn;
+    private System.Windows.Forms.CheckBox chkArduino;
+    private System.Windows.Forms.TextBox txtArduinoOff;
+    private System.Windows.Forms.ComboBox cmbArduinoDelay;
   }
 }

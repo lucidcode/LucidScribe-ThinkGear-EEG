@@ -153,6 +153,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5223C9F4CEC75008D3F4F65D8FFF3E71"
+        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5301F5D8D26749F7BD0244DEDE118EB5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -431,6 +437,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4DFAFBD87DA4416CB63C9BA146EFAF4A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5223C9F4CEC75008D3F4F65D8FFF3E71"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1070,6 +1082,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5223C9F4CEC75008D3F4F65D8FFF3E71"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:YocoWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_5223C9F4CEC75008D3F4F65D8FFF3E71"
+                    {
+                    "Name" = "8:YocoWrapper.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:YocoWrapper.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5301F5D8D26749F7BD0244DEDE118EB5"
@@ -2210,14 +2253,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe ThinkGear EEG"
-        "ProductCode" = "8:{B7BBD380-8DDD-47CF-A45A-231978ABAEAB}"
-        "PackageCode" = "8:{FAAFE6AF-2450-4A43-BCFD-11E3D8025E2F}"
+        "ProductCode" = "8:{AD588752-24B4-4FF8-92DB-3A96431C2BD7}"
+        "PackageCode" = "8:{49CBC5A2-6456-439A-A754-549FA5AA117E}"
         "UpgradeCode" = "8:{9B1E2A82-9D73-4675-9717-2311206ABC4E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.1"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucidcode.com/Contact"

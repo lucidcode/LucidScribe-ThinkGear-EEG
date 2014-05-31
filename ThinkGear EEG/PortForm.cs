@@ -20,10 +20,17 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         private Boolean loaded = false;
         public Boolean TCMP = false;
         public Boolean NZT48 = false;
+
         public Boolean tACS = false;
         public String Target = "ANY";
         public String StateOn = "A";
         public String StateOff = "B";
+
+        public Boolean Arduino = false;
+        public String ArduinoPort = "COM1";
+        public String ArduinoDelay = "1";
+        public String ArduinoOn = "1";
+        public String ArduinoOff = "0";
 
         public PortForm()
         {
@@ -40,6 +47,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         private void LoadPortList()
         {
           lstPorts.Clear();
+          cmbArduinoPort.Items.Clear();
           foreach (string strPort in SerialPort.GetPortNames())
           {
             String strPortName = strPort;
@@ -70,6 +78,8 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             strPortName = strPortName.Replace("y", "");
             strPortName = strPortName.Replace("z", "");
 
+            cmbArduinoPort.Items.Add(strPortName);
+
             ListViewItem lstItem = new ListViewItem(strPortName);
             lstItem.ImageIndex = 0;
             lstPorts.Items.Add(lstItem);
@@ -95,19 +105,18 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           cmbAlgorithm.Text = xmlSettings.DocumentElement.SelectSingleNode("//Algorithm").InnerText;
           cmbThreshold.Text = xmlSettings.DocumentElement.SelectSingleNode("//Threshold").InnerText;
 
-          if (xmlSettings.DocumentElement.SelectSingleNode("//TCMP") != null && xmlSettings.DocumentElement.SelectSingleNode("//TCMP").InnerText == "1")
-          {
-            chkTCMP.Checked = true;
-            TCMP = true;
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//tACS") != null && xmlSettings.DocumentElement.SelectSingleNode("//tACS").InnerText == "1")
+          if (xmlSettings.DocumentElement.SelectSingleNode("//NZT48") != null && xmlSettings.DocumentElement.SelectSingleNode("//NZT48").InnerText == "1")
           {
             chkNZT48.Checked = true;
             NZT48 = true;
           }
 
-          if (xmlSettings.DocumentElement.SelectSingleNode("//NZT48") != null && xmlSettings.DocumentElement.SelectSingleNode("//NZT48").InnerText == "1")
+          if (File.Exists(m_strPath + "Plugins\\NZT-48.video.lsd"))
+          {
+            txtVideo.Text = File.ReadAllText(m_strPath + "Plugins\\NZT-48.video.lsd");
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//tACS") != null && xmlSettings.DocumentElement.SelectSingleNode("//tACS").InnerText == "1")
           {
             chktACS.Checked = true;
             tACS = true;
@@ -124,16 +133,55 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             cmbStateOn.Text = xmlSettings.DocumentElement.SelectSingleNode("//StateOn").InnerText;
             StateOn = xmlSettings.DocumentElement.SelectSingleNode("//StateOn").InnerText;
           }
+          else
+          {
+            cmbStateOn.Text = "A";
+          }
 
           if (xmlSettings.DocumentElement.SelectSingleNode("//StateOff") != null)
           {
             cmbStateOff.Text = xmlSettings.DocumentElement.SelectSingleNode("//StateOff").InnerText;
             StateOff = xmlSettings.DocumentElement.SelectSingleNode("//StateOff").InnerText;
           }
-
-          if (File.Exists(m_strPath + "Plugins\\NZT-48.video.lsd"))
+          else
           {
-            txtVideo.Text = File.ReadAllText(m_strPath + "Plugins\\NZT-48.video.lsd");
+            cmbStateOff.Text = "B";
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//Arduino") != null && xmlSettings.DocumentElement.SelectSingleNode("//Arduino").InnerText == "1")
+          {
+            chkArduino.Checked = true;
+            Arduino = true;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoPort") != null)
+          {
+            cmbArduinoPort.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoPort").InnerText;
+            ArduinoPort = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoPort").InnerText;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOn") != null)
+          {
+            txtArduinoOn.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOn").InnerText;
+            ArduinoOn = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOn").InnerText;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOff") != null)
+          {
+            txtArduinoOff.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOff").InnerText;
+            ArduinoOff = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOff").InnerText;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoDelay") != null)
+          {
+            cmbArduinoDelay.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoDelay").InnerText;
+            ArduinoDelay = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoDelay").InnerText;
+          }
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//TCMP") != null && xmlSettings.DocumentElement.SelectSingleNode("//TCMP").InnerText == "1")
+          {
+            chkTCMP.Checked = true;
+            TCMP = true;
           }
         }
 
@@ -143,15 +191,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           settingsXML += "<Plugin>";
           settingsXML += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
           settingsXML += "<Threshold>" + cmbThreshold.Text + "</Threshold>";
-
-          if (chkTCMP.Checked)
-          {
-            settingsXML += "<TCMP>1</TCMP>";
-          }
-          else
-          {
-            settingsXML += "<TCMP>0</TCMP>";
-          }
 
           if (chkNZT48.Checked)
           {
@@ -174,6 +213,29 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           settingsXML += "<Target>" + txtTarget.Text + "</Target>";
           settingsXML += "<StateOn>" + cmbStateOn.Text + "</StateOn>";
           settingsXML += "<StateOff>" + cmbStateOff.Text + "</StateOff>";
+
+          if (chkArduino.Checked)
+          {
+            settingsXML += "<Arduino>1</Arduino>";
+          }
+          else
+          {
+            settingsXML += "<Arduino>0</Arduino>";
+          }
+
+          settingsXML += "<ArduinoPort>" + cmbArduinoPort.Text + "</ArduinoPort>";
+          settingsXML += "<ArduinoDelay>" + cmbArduinoDelay.Text + "</ArduinoDelay>";
+          settingsXML += "<ArduinoOn>" + txtArduinoOn.Text + "</ArduinoOn>";
+          settingsXML += "<ArduinoOff>" + txtArduinoOff.Text + "</ArduinoOff>";
+
+          if (chkTCMP.Checked)
+          {
+            settingsXML += "<TCMP>1</TCMP>";
+          }
+          else
+          {
+            settingsXML += "<TCMP>0</TCMP>";
+          }
 
           settingsXML += "</Plugin>";
           settingsXML += "</LucidScribeData>";
@@ -286,5 +348,46 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           StateOff = cmbStateOff.Text;
           SaveSettings();
         }
+
+        private void chkArduino_CheckedChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          Arduino = chkArduino.Checked;
+          SaveSettings();
+        }
+
+        private void cmbArduinoPort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          ArduinoPort = cmbArduinoPort.Text;
+          SaveSettings();
+        }
+
+        private void cmbArduinoDelay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          ArduinoDelay = cmbArduinoDelay.Text;
+          SaveSettings();
+        }
+
+        private void txtArduinoOn_TextChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          ArduinoOn = txtArduinoOn.Text;
+          SaveSettings();
+        }
+
+        private void txtArduinoOff_TextChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+
+          ArduinoOff = txtArduinoOff.Text;
+          SaveSettings();
+        }
+
     }
 }
