@@ -664,12 +664,24 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         arduinoPort.BaudRate = 9600;
         arduinoPort.Open();
 
-        arduinoPort.Write(Device.ArduinoOn);
-        
+        try
+        {
+          byte[] b = BitConverter.GetBytes(Convert.ToInt32(Device.ArduinoOn));
+          arduinoPort.Write(b, 0, 4);
+        }
+        catch (Exception ex)
+        { arduinoPort.Write(Device.ArduinoOn); }
+
         int arduinoDelay = Convert.ToInt32(Device.ArduinoDelay) * 60000;
         Thread.Sleep(arduinoDelay);
 
-        arduinoPort.Write(Device.ArduinoOff);
+        try
+        {
+          byte[] b = BitConverter.GetBytes(Convert.ToInt32(Device.ArduinoOff));
+          arduinoPort.Write(b, 0, 4);
+        }
+        catch (Exception ex)
+        { arduinoPort.Write(Device.ArduinoOff); }
 
         arduinoPort.Close();
         arduinoPort.Dispose();
