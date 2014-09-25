@@ -47,11 +47,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
     public static Boolean TCMP = false;
     public static Boolean NZT48 = false;
 
-    public static Boolean tACS = false;
-    public static String Target = "ANY";
-    public static String StateOn = "A";
-    public static String StateOff = "A";
-
     public static Boolean Arduino = false;
     public static String ArduinoPort = "COM1";
     public static String ArduinoDelay = "1";
@@ -83,11 +78,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
                 TCMP = formPort.TCMP;
                 NZT48 = formPort.NZT48;
-
-                tACS = formPort.tACS;
-                Target = formPort.Target;
-                StateOn = formPort.StateOn;
-                StateOff = formPort.StateOff;
 
                 Arduino = formPort.Arduino;
                 ArduinoPort = formPort.ArduinoPort;
@@ -530,49 +520,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
             if (boolDreaming)
             {
-              // Check if we need to turn on a tACS device
-              if (Device.tACS)
-              {
-                try
-                {
-                  YocoWrapper.YRelay relay;
-                  string errorMessage = "";
-
-                  if (YocoWrapper.YAPI.RegisterHub("usb", ref errorMessage) != YocoWrapper.YAPI.SUCCESS)
-                  {
-                    MessageBox.Show("tACS RegisterHub error: " + errorMessage, "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                  }
-
-                  if (Device.Target == "ANY")
-                  {
-                    relay = YocoWrapper.YRelay.FirstRelay();
-                    if (relay == null)
-                    {
-                      MessageBox.Show("tACS RegisterHub error: No module connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                  }
-                  else relay = YocoWrapper.YRelay.FindRelay(Device.Target + ".relay1");
-
-                  if (relay.isOnline())
-                  {
-                    if (Device.StateOn == "A")
-                    {
-                      relay.set_state(YocoWrapper.YRelay.STATE_A);
-                    }
-                    else
-                    {
-                      relay.set_state(YocoWrapper.YRelay.STATE_B);
-                    }
-                  }
-                  else
-                  {
-                    MessageBox.Show("tACS RegisterHub error: Module not connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                  }
-                }
-                catch (Exception ex)
-                { }
-              }
-
               // Check if we need to send a message to an arduino
               if (Device.Arduino)
               {
@@ -589,49 +536,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
               if (Device.REMDetected)
               {
                 Device.REMDetected = false;
-
-                // Check if we need to turn off a tACS device
-                if (Device.tACS)
-                {
-                  try
-                  {
-                    YocoWrapper.YRelay relay;
-                    string errorMessage = "";
-
-                    if (YocoWrapper.YAPI.RegisterHub("usb", ref errorMessage) != YocoWrapper.YAPI.SUCCESS)
-                    {
-                      MessageBox.Show("tACS RegisterHub error: " + errorMessage, "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    if (Device.Target == "ANY")
-                    {
-                      relay = YocoWrapper.YRelay.FirstRelay();
-                      if (relay == null)
-                      {
-                        MessageBox.Show("tACS RegisterHub error: No module connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                      }
-                    }
-                    else relay = YocoWrapper.YRelay.FindRelay(Device.Target + ".relay1");
-
-                    if (relay.isOnline())
-                    {
-                      if (Device.StateOff == "A")
-                      {
-                        relay.set_state(YocoWrapper.YRelay.STATE_A);
-                      }
-                      else
-                      {
-                        relay.set_state(YocoWrapper.YRelay.STATE_B);
-                      }
-                    }
-                    else
-                    {
-                      MessageBox.Show("tACS RegisterHub error: Module not connected (check USB cable).", "LucidScribe.ThinkGearEEG.DetectREM()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                  }
-                  catch (Exception ex)
-                  { }
-                }
               }
             }
 

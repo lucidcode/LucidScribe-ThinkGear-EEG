@@ -21,11 +21,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         public Boolean TCMP = false;
         public Boolean NZT48 = false;
 
-        public Boolean tACS = false;
-        public String Target = "ANY";
-        public String StateOn = "A";
-        public String StateOff = "B";
-
         public Boolean Arduino = false;
         public String ArduinoPort = "COM1";
         public String ArduinoDelay = "1";
@@ -116,38 +111,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             txtVideo.Text = File.ReadAllText(m_strPath + "Plugins\\NZT-48.video.lsd");
           }
 
-          if (xmlSettings.DocumentElement.SelectSingleNode("//tACS") != null && xmlSettings.DocumentElement.SelectSingleNode("//tACS").InnerText == "1")
-          {
-            chktACS.Checked = true;
-            tACS = true;
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//Target") != null)
-          {
-            txtTarget.Text = xmlSettings.DocumentElement.SelectSingleNode("//Target").InnerText;
-            Target = xmlSettings.DocumentElement.SelectSingleNode("//Target").InnerText;
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//StateOn") != null)
-          {
-            cmbStateOn.Text = xmlSettings.DocumentElement.SelectSingleNode("//StateOn").InnerText;
-            StateOn = xmlSettings.DocumentElement.SelectSingleNode("//StateOn").InnerText;
-          }
-          else
-          {
-            cmbStateOn.Text = "A";
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//StateOff") != null)
-          {
-            cmbStateOff.Text = xmlSettings.DocumentElement.SelectSingleNode("//StateOff").InnerText;
-            StateOff = xmlSettings.DocumentElement.SelectSingleNode("//StateOff").InnerText;
-          }
-          else
-          {
-            cmbStateOff.Text = "B";
-          }
-
           if (xmlSettings.DocumentElement.SelectSingleNode("//Arduino") != null && xmlSettings.DocumentElement.SelectSingleNode("//Arduino").InnerText == "1")
           {
             chkArduino.Checked = true;
@@ -200,19 +163,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           {
             settingsXML += "<NZT48>0</NZT48>";
           }
-
-          if (chktACS.Checked)
-          {
-            settingsXML += "<tACS>1</tACS>";
-          }
-          else
-          {
-            settingsXML += "<tACS>0</tACS>";
-          }
-
-          settingsXML += "<Target>" + txtTarget.Text + "</Target>";
-          settingsXML += "<StateOn>" + cmbStateOn.Text + "</StateOn>";
-          settingsXML += "<StateOff>" + cmbStateOff.Text + "</StateOff>";
 
           if (chkArduino.Checked)
           {
@@ -317,38 +267,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           File.WriteAllText(m_strPath + "Plugins\\NZT-48.video.lsd", txtVideo.Text);
         }
 
-        private void chktACS_CheckedChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          tACS = chktACS.Checked;
-          SaveSettings();
-        }
-
-        private void txtTarget_TextChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          Target = txtTarget.Text;
-          SaveSettings();
-        }
-
-        private void cmbStateOn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          StateOn = cmbStateOn.Text;
-          SaveSettings();
-        }
-
-        private void cmbStateOff_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          StateOff = cmbStateOff.Text;
-          SaveSettings();
-        }
-
         private void chkArduino_CheckedChanged(object sender, EventArgs e)
         {
           if (!loaded) { return; }
@@ -388,6 +306,5 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           ArduinoOff = txtArduinoOff.Text;
           SaveSettings();
         }
-
     }
 }
