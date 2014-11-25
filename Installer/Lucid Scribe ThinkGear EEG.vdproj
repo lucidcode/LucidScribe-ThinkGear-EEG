@@ -51,8 +51,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_181D19ABEE5FBD5F85778DB4BF393FE0"
+        "MsmKey" = "8:_121331E080F04BCFC78738D37B296F56"
         "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19E0465AA13147FFAA729ACC0793FD1F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -63,13 +69,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1FBA81496A2EC06B3748DE845685909D"
-        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2AA77CECF106097313C3E6572F08B079"
+        "MsmKey" = "8:_27F428A76D28178FF942F262BB58A5FF"
         "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -135,6 +135,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_474ED167572C3F1CF1379B2271821C01"
+        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4D017ED004C9412C814844F047694082"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -149,12 +155,6 @@
         {
         "MsmKey" = "8:_4FF010B251224DE98FCB6EB63DA5E26D"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5223C9F4CEC75008D3F4F65D8FFF3E71"
-        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -201,20 +201,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_63B072A3D23049528411EAA075B7B399"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_651E159C3D0248109AFD838F6F7EF6DD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6F1CFFE9DFF14D4881E2E2B81CBE89EE"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_6B45C459D4A750622FA3111F9D1F4BD4"
+        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7102C57C181FEFC1E566FCD46655CCCB"
-        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
+        "MsmKey" = "8:_6F1CFFE9DFF14D4881E2E2B81CBE89EE"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -273,12 +279,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8EC90E4D5E8A053DDA3AEDF496A9D03E"
-        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_92A98C7469E4447497F8692D6DB1B693"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -311,6 +311,12 @@
         {
         "MsmKey" = "8:_A25130F375E9481DB12D46BC1A5B0AB7"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A445A861B913D1D62F789FD772B5FBA6"
+        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -399,6 +405,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EC3326BCFA27E41E008BF96F31AF701D"
+        "OwnerKey" = "8:_D5F4677254244E92ACAD2F83F55F5016"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EE15A636D11B43808FD10E5AA3B32673"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -442,37 +454,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5223C9F4CEC75008D3F4F65D8FFF3E71"
+        "OwnerKey" = "8:_474ED167572C3F1CF1379B2271821C01"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1FBA81496A2EC06B3748DE845685909D"
+        "OwnerKey" = "8:_A445A861B913D1D62F789FD772B5FBA6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2AA77CECF106097313C3E6572F08B079"
+        "OwnerKey" = "8:_121331E080F04BCFC78738D37B296F56"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8EC90E4D5E8A053DDA3AEDF496A9D03E"
+        "OwnerKey" = "8:_27F428A76D28178FF942F262BB58A5FF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7102C57C181FEFC1E566FCD46655CCCB"
+        "OwnerKey" = "8:_6B45C459D4A750622FA3111F9D1F4BD4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_181D19ABEE5FBD5F85778DB4BF393FE0"
+        "OwnerKey" = "8:_EC3326BCFA27E41E008BF96F31AF701D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -572,7 +584,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "Version" = "8:3.5.30729"
+                "FrameworkVersion" = "8:3.5.30729"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -700,20 +712,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_181D19ABEE5FBD5F85778DB4BF393FE0"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_121331E080F04BCFC78738D37B296F56"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:lucidcode.Controls, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.TCMP, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_181D19ABEE5FBD5F85778DB4BF393FE0"
+                    "_121331E080F04BCFC78738D37B296F56"
                     {
-                    "Name" = "8:lucidcode.Controls.dll"
+                    "Name" = "8:lucidcode.LucidScribe.TCMP.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:lucidcode.Controls.dll"
+            "SourcePath" = "8:lucidcode.LucidScribe.TCMP.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
@@ -727,8 +739,28 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_19E0465AA13147FFAA729ACC0793FD1F"
+            {
+            "SourcePath" = "8:..\\ThinkGear EEG\\Plugins\\NS TCMP.lsd"
+            "TargetName" = "8:NS TCMP.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_E4E5B7EE01D94A59926DD97BFC70E283"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B10902F57CB4B63B6964DF51289AD10"
@@ -751,20 +783,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1FBA81496A2EC06B3748DE845685909D"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_27F428A76D28178FF942F262BB58A5FF"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ThinkGearNET, Version=1.0.3.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.Interface.Illuminated, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1FBA81496A2EC06B3748DE845685909D"
+                    "_27F428A76D28178FF942F262BB58A5FF"
                     {
-                    "Name" = "8:ThinkGearNET.dll"
+                    "Name" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:ThinkGearNET.dll"
+            "SourcePath" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
@@ -778,38 +810,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2AA77CECF106097313C3E6572F08B079"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.TCMP, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_2AA77CECF106097313C3E6572F08B079"
-                    {
-                    "Name" = "8:lucidcode.LucidScribe.TCMP.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:lucidcode.LucidScribe.TCMP.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1013,6 +1014,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_474ED167572C3F1CF1379B2271821C01"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:YocoWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_474ED167572C3F1CF1379B2271821C01"
+                    {
+                    "Name" = "8:YocoWrapper.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:YocoWrapper.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D017ED004C9412C814844F047694082"
             {
             "SourcePath" = "8:..\\ThinkGear EEG\\Plugins\\Beta.lsd"
@@ -1082,37 +1114,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5223C9F4CEC75008D3F4F65D8FFF3E71"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:YocoWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_5223C9F4CEC75008D3F4F65D8FFF3E71"
-                    {
-                    "Name" = "8:YocoWrapper.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:YocoWrapper.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5301F5D8D26749F7BD0244DEDE118EB5"
@@ -1266,6 +1267,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_63B072A3D23049528411EAA075B7B399"
+            {
+            "SourcePath" = "8:..\\ThinkGear EEG\\Plugins\\NZT-48.lsd"
+            "TargetName" = "8:NZT-48.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_E4E5B7EE01D94A59926DD97BFC70E283"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_651E159C3D0248109AFD838F6F7EF6DD"
             {
             "SourcePath" = "8:..\\ThinkGear EEG\\ThinkGearNET\\ThinkGearNETTest\\Properties\\Settings.settings"
@@ -1286,34 +1307,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F1CFFE9DFF14D4881E2E2B81CBE89EE"
-            {
-            "SourcePath" = "8:..\\ThinkGear EEG\\ThinkGearNET\\ThinkGearNETTest\\Properties\\Settings.Designer.cs"
-            "TargetName" = "8:Settings.Designer.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B8D8248DF4754B6D8F3346BD67DFD371"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7102C57C181FEFC1E566FCD46655CCCB"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6B45C459D4A750622FA3111F9D1F4BD4"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.Interface, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7102C57C181FEFC1E566FCD46655CCCB"
+                    "_6B45C459D4A750622FA3111F9D1F4BD4"
                     {
                     "Name" = "8:lucidcode.LucidScribe.Interface.dll"
                     "Attributes" = "3:512"
@@ -1335,6 +1336,26 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F1CFFE9DFF14D4881E2E2B81CBE89EE"
+            {
+            "SourcePath" = "8:..\\ThinkGear EEG\\ThinkGearNET\\ThinkGearNETTest\\Properties\\Settings.Designer.cs"
+            "TargetName" = "8:Settings.Designer.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_B8D8248DF4754B6D8F3346BD67DFD371"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_725A333E577F4812BF5B507F051E9A54"
@@ -1528,37 +1549,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8EC90E4D5E8A053DDA3AEDF496A9D03E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.Interface.Illuminated, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_8EC90E4D5E8A053DDA3AEDF496A9D03E"
-                    {
-                    "Name" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_92A98C7469E4447497F8692D6DB1B693"
             {
             "SourcePath" = "8:..\\ThinkGear EEG\\ThinkGear EEG.csproj"
@@ -1677,6 +1667,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A445A861B913D1D62F789FD772B5FBA6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ThinkGearNET, Version=1.0.3.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_A445A861B913D1D62F789FD772B5FBA6"
+                    {
+                    "Name" = "8:ThinkGearNET.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ThinkGearNET.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A50AD2CB84BC4354A0FBDE7F0519C9CC"
@@ -1937,6 +1958,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EC3326BCFA27E41E008BF96F31AF701D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lucidcode.Controls, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_EC3326BCFA27E41E008BF96F31AF701D"
+                    {
+                    "Name" = "8:lucidcode.Controls.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:lucidcode.Controls.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE15A636D11B43808FD10E5AA3B32673"
@@ -2253,14 +2305,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe ThinkGear EEG"
-        "ProductCode" = "8:{ED977A69-04BD-4554-8C8E-3FEBBDDDEBB9}"
-        "PackageCode" = "8:{7A8543B0-F7D9-4FC8-BAB4-83B9D4857101}"
+        "ProductCode" = "8:{43EC37BB-2E41-454E-BBED-68EF9EEA8C5B}"
+        "PackageCode" = "8:{DE983BD2-2AF9-4F10-A83F-41DD328ADD0B}"
         "UpgradeCode" = "8:{9B1E2A82-9D73-4675-9717-2311206ABC4E}"
+        "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.4"
+        "ProductVersion" = "8:1.1.5"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucidcode.com/Contact"
