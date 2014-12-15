@@ -454,7 +454,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             bool boolDreaming = false;
             foreach (Double dblValue in m_arrHistory)
             {
-              if (dblValue > Device.Threshold)
+              if (dblValue > 800)
               {
                 intAbove += 1;
                 intBelow = 0;
