@@ -436,43 +436,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EC3326BCFA27E41E008BF96F31AF701D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6B45C459D4A750622FA3111F9D1F4BD4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_27F428A76D28178FF942F262BB58A5FF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_121331E080F04BCFC78738D37B296F56"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A445A861B913D1D62F789FD772B5FBA6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_474ED167572C3F1CF1379B2271821C01"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4DFAFBD87DA4416CB63C9BA146EFAF4A"
+        "OwnerKey" = "8:_74CAE4B0BF7440C18EA8ED97292C459A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -484,7 +448,43 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_74CAE4B0BF7440C18EA8ED97292C459A"
+        "OwnerKey" = "8:_4DFAFBD87DA4416CB63C9BA146EFAF4A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_474ED167572C3F1CF1379B2271821C01"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A445A861B913D1D62F789FD772B5FBA6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_121331E080F04BCFC78738D37B296F56"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_27F428A76D28178FF942F262BB58A5FF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6B45C459D4A750622FA3111F9D1F4BD4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC3326BCFA27E41E008BF96F31AF701D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -584,7 +584,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:3.5.30729 "
+                "FrameworkVersion" = "8:3.5.30729  "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -2275,15 +2275,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe ThinkGear EEG"
-        "ProductCode" = "8:{E6A4444C-5D08-43B1-B173-C825D7C07673}"
-        "PackageCode" = "8:{7667F75E-F89D-40E1-A6B7-0998A51C3413}"
+        "ProductCode" = "8:{DB14E410-F1E8-45BE-B64A-EC814D9329F5}"
+        "PackageCode" = "8:{7ACD137F-3AFB-4C69-B35F-E6889976698E}"
         "UpgradeCode" = "8:{9B1E2A82-9D73-4675-9717-2311206ABC4E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.6"
+        "ProductVersion" = "8:1.1.7"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucidcode.com/Contact"

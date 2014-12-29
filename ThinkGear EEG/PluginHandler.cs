@@ -47,14 +47,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
     public static Boolean TCMP = false;
     public static Boolean NZT48 = false;
 
-    public static Boolean Arduino = false;
-    public static String ArduinoPort = "COM1";
-    public static String ArduinoDelay = "1";
-    public static String ArduinoOn = "1";
-    public static String ArduinoOff = "0";
-
-    public static Boolean REMDetected = false;
-
     public static EventHandler<ThinkGearChangedEventArgs> ThinkGearChanged;
 
     public static Boolean Initialize()
@@ -78,12 +70,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
                 TCMP = formPort.TCMP;
                 NZT48 = formPort.NZT48;
-
-                Arduino = formPort.Arduino;
-                ArduinoPort = formPort.ArduinoPort;
-                ArduinoDelay = formPort.ArduinoDelay;
-                ArduinoOn = formPort.ArduinoOn;
-                ArduinoOff = formPort.ArduinoOff;
 
                 m_boolInitialized = true;
               }
@@ -420,7 +406,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
   {
     public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
     {
-      Thread ArduinoThread;
       List<int> m_arrHistory = new List<int>();
       public override string Name
       {
@@ -520,23 +505,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
 
             if (boolDreaming)
             {
-              // Check if we need to send a message to an arduino
-              if (Device.Arduino)
-              {
-                Device.Arduino = false; // Set false so we don't call it again before the thread completes / after the delay
-                ArduinoThread = new Thread(TriggerArduino);
-                ArduinoThread.Start();
-              }
-
-              Device.REMDetected = true;
               return 888;
-            }
-            else
-            {
-              if (Device.REMDetected)
-              {
-                Device.REMDetected = false;
-              }
             }
 
             if (intBlinks > 10) { intBlinks = 10; }
@@ -561,25 +530,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         }
       }
 
-      private void TriggerArduino()
-      {
-        SerialPort arduinoPort = new SerialPort();
-        arduinoPort.PortName = Device.ArduinoPort;
-        arduinoPort.BaudRate = 9600;
-        arduinoPort.Open();
-
-        arduinoPort.WriteLine(Device.ArduinoOn);
-
-        int arduinoDelay = Convert.ToInt32(Device.ArduinoDelay) * 60000;
-        Thread.Sleep(arduinoDelay);
-
-        arduinoPort.WriteLine(Device.ArduinoOff);
-
-        arduinoPort.Close();
-        arduinoPort.Dispose();
-
-        Device.Arduino = true;
-      }
     }
   }
 

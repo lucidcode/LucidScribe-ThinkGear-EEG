@@ -16,16 +16,10 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         public static string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
         public String SelectedPort = "";
         public String Algorithm = "REM Detector";
-        public int Threshold = 800;
+        public int Threshold = 500;
         private Boolean loaded = false;
         public Boolean TCMP = false;
         public Boolean NZT48 = false;
-
-        public Boolean Arduino = false;
-        public String ArduinoPort = "COM1";
-        public String ArduinoDelay = "1";
-        public String ArduinoOn = "1";
-        public String ArduinoOff = "0";
 
         public PortForm()
         {
@@ -42,7 +36,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
         private void LoadPortList()
         {
           lstPorts.Clear();
-          cmbArduinoPort.Items.Clear();
           foreach (string strPort in SerialPort.GetPortNames())
           {
             String strPortName = strPort;
@@ -72,8 +65,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             strPortName = strPortName.Replace("x", "");
             strPortName = strPortName.Replace("y", "");
             strPortName = strPortName.Replace("z", "");
-
-            cmbArduinoPort.Items.Add(strPortName);
 
             ListViewItem lstItem = new ListViewItem(strPortName);
             lstItem.ImageIndex = 0;
@@ -111,36 +102,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
             txtVideo.Text = File.ReadAllText(m_strPath + "Plugins\\NZT-48.video.lsd");
           }
 
-          if (xmlSettings.DocumentElement.SelectSingleNode("//Arduino") != null && xmlSettings.DocumentElement.SelectSingleNode("//Arduino").InnerText == "1")
-          {
-            chkArduino.Checked = true;
-            Arduino = true;
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoPort") != null)
-          {
-            cmbArduinoPort.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoPort").InnerText;
-            ArduinoPort = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoPort").InnerText;
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOn") != null)
-          {
-            txtArduinoOn.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOn").InnerText;
-            ArduinoOn = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOn").InnerText;
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOff") != null)
-          {
-            txtArduinoOff.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOff").InnerText;
-            ArduinoOff = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoOff").InnerText;
-          }
-
-          if (xmlSettings.DocumentElement.SelectSingleNode("//ArduinoDelay") != null)
-          {
-            cmbArduinoDelay.Text = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoDelay").InnerText;
-            ArduinoDelay = xmlSettings.DocumentElement.SelectSingleNode("//ArduinoDelay").InnerText;
-          }
-
           if (xmlSettings.DocumentElement.SelectSingleNode("//TCMP") != null && xmlSettings.DocumentElement.SelectSingleNode("//TCMP").InnerText == "1")
           {
             chkTCMP.Checked = true;
@@ -163,20 +124,6 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           {
             settingsXML += "<NZT48>0</NZT48>";
           }
-
-          if (chkArduino.Checked)
-          {
-            settingsXML += "<Arduino>1</Arduino>";
-          }
-          else
-          {
-            settingsXML += "<Arduino>0</Arduino>";
-          }
-
-          settingsXML += "<ArduinoPort>" + cmbArduinoPort.Text + "</ArduinoPort>";
-          settingsXML += "<ArduinoDelay>" + cmbArduinoDelay.Text + "</ArduinoDelay>";
-          settingsXML += "<ArduinoOn>" + txtArduinoOn.Text + "</ArduinoOn>";
-          settingsXML += "<ArduinoOff>" + txtArduinoOff.Text + "</ArduinoOff>";
 
           if (chkTCMP.Checked)
           {
@@ -267,44 +214,5 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
           File.WriteAllText(m_strPath + "Plugins\\NZT-48.video.lsd", txtVideo.Text);
         }
 
-        private void chkArduino_CheckedChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          Arduino = chkArduino.Checked;
-          SaveSettings();
-        }
-
-        private void cmbArduinoPort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          ArduinoPort = cmbArduinoPort.Text;
-          SaveSettings();
-        }
-
-        private void cmbArduinoDelay_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          ArduinoDelay = cmbArduinoDelay.Text;
-          SaveSettings();
-        }
-
-        private void txtArduinoOn_TextChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          ArduinoOn = txtArduinoOn.Text;
-          SaveSettings();
-        }
-
-        private void txtArduinoOff_TextChanged(object sender, EventArgs e)
-        {
-          if (!loaded) { return; }
-
-          ArduinoOff = txtArduinoOff.Text;
-          SaveSettings();
-        }
     }
 }
