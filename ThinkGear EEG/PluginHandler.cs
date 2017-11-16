@@ -542,7 +542,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       {
         get
         {
-          return "NS TCMP";
+          return "DRONE TCMP";
         }
       }
 
@@ -559,44 +559,12 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
       }
 
       private static String Morse = "";
-      Dictionary<char, String> Code = new Dictionary<char, String>()
+      Dictionary<String, String> Code = new Dictionary<String, String>()
           {
-              {'A' , ".-"},
-              {'B' , "-..."},
-              {'C' , "-.-."},
-              {'D' , "-.."},
-              {'E' , "."},
-              {'F' , "..-."},
-              {'G' , "--."},
-              {'H' , "...."},
-              {'I' , ".."},
-              {'J' , ".---"},
-              {'K' , "-.-"},
-              {'L' , ".-.."},
-              {'M' , "--"},
-              {'N' , "-."},
-              {'O' , "---"},
-              {'P' , ".--."},
-              {'Q' , "--.-"},
-              {'R' , ".-."},
-              {'S' , "..."},
-              {'T' , "-"},
-              {'U' , "..-"},
-              {'V' , "...-"},
-              {'W' , ".--"},
-              {'X' , "-..-"},
-              {'Y' , "-.--"},
-              {'Z' , "--.."},
-              {'0' , "-----"},
-              {'1' , ".----"},
-              {'2' , "..----"},
-              {'3' , "...--"},
-              {'4' , "....-"},
-              {'5' , "....."},
-              {'6' , "-...."},
-              {'7' , "--..."},
-              {'8' , "---.."},
-              {'9' , "----."},
+              {"UP" , "."},
+              {"LEFT" , ".."},
+              {"DOWN", "-"},
+              {"RIGHT", "--"},
           };
 
       List<int> m_arrHistory = new List<int>();
@@ -726,7 +694,7 @@ namespace lucidcode.LucidScribe.Plugin.NeuroSky.MindSet
               {
                 var myValue = Code.First(x => x.Value == signal);
                 Morse = myValue.Key.ToString();
-                SendKeys.Send(myValue.Key.ToString());
+                SendKeys.Send("{" + myValue.Key.ToString() +"}");
                 signal = "";
                 m_arrHistory.Clear();
                 SpaceSent = false;
